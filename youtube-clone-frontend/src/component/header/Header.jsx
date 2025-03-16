@@ -6,13 +6,17 @@ import VideoCallIcon from '@mui/icons-material/VideoCall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({hideSidebar, sidebar}) {
+
+    function handleSidebar() {
+        hideSidebar(!sidebar)
+    }
 
     return (
         <div className="Header">
 
             <div className="sidebar">
-            <div className="hamburgerMenu">
+            <div className="hamburgerMenu" onClick={handleSidebar}>
                 <MenuIcon className="hamburger"/>
             </div>
             <div className="sidebar-youtubeIcon">
