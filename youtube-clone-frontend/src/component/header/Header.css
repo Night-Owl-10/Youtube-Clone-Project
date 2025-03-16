@@ -1,0 +1,129 @@
+.Header {
+    display: flex;
+    height: 56px;
+    box-sizing:border-box;
+    padding: 10px 16px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    top: 0;
+    position: fixed;
+    background-color: black;
+    z-index: 10;
+    color: white;
+}
+
+.sidebar {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.hamburgerMenu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;    
+}
+
+.hamburger {
+    color: white;
+}
+
+.sidebar-youtubeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.youtubeIcon {
+    color: red;
+}
+
+.youtubeTitle {
+    font-size: 25px;
+    word-spacing: 0px;
+    letter-spacing: 0px;
+    font-family: sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header-search {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+}
+
+.searchbox {
+    width: 80%;
+    display: flex;
+}
+
+.search-input {
+    width: 90%;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid grey;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    color: white;
+    padding: 5px 20px 5px 20px;
+    background-color: black;
+    outline: 0;
+}
+
+.search-btn {
+    width: 10%;
+    color: white;
+    border: 1px solid grey;
+    height: 30px;
+    border-radius: 0px 5px 5px 0;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-left: none;
+    background-color: rgb(88, 84, 84);
+    cursor: pointer;
+}
+
+.addVideo-icon {
+    color: white;
+    cursor: pointer;
+}
+
+.header-login {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login {
+    border: 1px solid #3ea6ff;
+    border-radius: 5px;
+    color:#3ea6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+.login:hover {
+    background-color:rgb(88, 84, 84);;
+}
+
+
