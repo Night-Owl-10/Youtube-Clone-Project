@@ -19,10 +19,10 @@ function Header({hideSidebar, sidebar}) {
             <div className="hamburgerMenu" onClick={handleSidebar}>
                 <MenuIcon className="hamburger"/>
             </div>
-            <div className="sidebar-youtubeIcon">
+            <Link to="/"style={{ textDecoration: 'none', color: 'inherit' }}><div className="sidebar-youtubeIcon">
                 <YouTubeIcon sx={{fontSize: "44px"}} className="youtubeIcon"/>
                 <div className="youtubeTitle"> YouTube</div>
-            </div>
+            </div></Link>
             </div>
 
             <div className="header-search">
@@ -36,7 +36,7 @@ function Header({hideSidebar, sidebar}) {
 
             <div className="header-login">
                 <VideoCallIcon sx={{fontSize: "30px"}} className="addVideo-icon"/>  
-                <Link to="signIn" style={{textDecoration: "none"}}><div className="login" >
+                <Link to="/signIn" style={{textDecoration: "none"}}><div className="login" >
                       <AccountCircleIcon/>
                       <p>Sign In</p>
                       </div> 

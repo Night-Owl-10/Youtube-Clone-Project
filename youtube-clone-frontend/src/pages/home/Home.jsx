@@ -2,11 +2,11 @@ import HomePage from "../../component/homepage/HomePage";
 import SideBar from "../../component/SideBar/SideBar";
 import "./Home.css"
 
-function Home({sidebar}) {
+function Home() {
     return(
         <div className="home">
-            <SideBar sidebar={sidebar}/>
-            <HomePage sidebar={sidebar}/>
+            <SideBar/>
+            <HomePage/>
         </div>
     )
 }

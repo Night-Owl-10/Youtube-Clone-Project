@@ -1,10 +1,15 @@
 import "./HomePage.css"
+import userContext from "../../utils/userContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const options = ["All", "Music", "Movies", "Games", "News", "Sports", "Shopping", "Courses", "Fashion & Beauty", "Podcast", "Educational", "Trailers", "Live", "Documentry", "Animals", "Social Media"]
 
-function HomePage({sidebar}) {
+function HomePage() {
+
+    const data = useContext(userContext);
     return(
-        <div className={sidebar ? "homepage" : "homepage2"}>
+        <div className={data.sideBar ? "homepage" : "homepage2"}>
             <div className="filter-options">
             {
                 options.map((item, index) => {
@@ -18,8 +23,8 @@ function HomePage({sidebar}) {
             
             </div>
 
-            <div className={sidebar ? "homepage-main": "homepage-main2"}>
-                <div className="youtube-videos">
+            <div className={data.sideBar ? "homepage-main": "homepage-main2"}>
+           <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}><div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -37,9 +42,9 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link> 
 
-                <div className="youtube-videos">
+                <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}> <div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -57,9 +62,9 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link>
 
-                <div className="youtube-videos">
+                <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}> <div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -77,9 +82,9 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link>
 
-                <div className="youtube-videos">
+                <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}> <div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -97,9 +102,9 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link>
 
-                <div className="youtube-videos">
+                <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}><div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -117,9 +122,9 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link>
 
-                <div className="youtube-videos">
+                <Link to="/watch"style={{ textDecoration: 'none', color: 'inherit' }}><div className="youtube-videos">
                     <div className="youtube-thumbnails">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="thumbnail" className="youtube-thumbnailPic" />
                         <div className="youtube-thumbnailTiming">
@@ -137,7 +142,7 @@ function HomePage({sidebar}) {
                             <div className="youtube-videoViews">20 likes</div>
                         </div>
                     </div>
-                </div>
+                </div></Link>
             </div>
         </div>
     )

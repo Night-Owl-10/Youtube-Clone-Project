@@ -18,10 +18,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import userContext from "../../utils/userContext";
+import { useContext} from "react";
 
-function SideBar({sidebar}) {
+function SideBar() {
+
+    const data = useContext(userContext);
     return(
-        <div className={sidebar ? "home-sideBar" : "home-hideSideBar"}>
+        <div className={data.sideBar ? "home-sideBar" : "home-hideSideBar"}>
             <div className="home-sideBar1">
                 <div className="home-sidebar-firstOption">
                     <HomeIcon/>

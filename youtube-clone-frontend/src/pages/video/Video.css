@@ -1,0 +1,268 @@
+.video {
+    background-color: black;
+    display: flex;
+    margin-top: 26px;
+    padding: 30px 0;
+    justify-content: center;
+    color:white;
+}
+
+.videoSection {
+    width: 100%;
+    max-width: 875px;
+    display: flex;
+    flex-direction: column;
+}
+
+.youtubeVideo {
+    width: 100%;
+}
+
+.youtubeVideo-video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.youtubeVideo-about {
+    display:flex;
+    flex-direction: column;
+}
+
+.youtubeVideo-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.youtubeVideo-profileBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.youtubeVideo-profileBlockLeft {
+    display: flex;
+    gap: 15px;
+}
+
+.youtubeVideo-profileBlockLeftImg {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.youtubeVideo-profileBlockLeftImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.youtubeVideo-subsView {
+    display:flex;
+    flex-direction: column;
+}
+
+.youtubeVideo-profileName {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.youtubeVideo-profileSubs {
+    font-size: 14px;
+    color: #AAAAAA;
+}
+
+.subscribeBtnYoutube {
+    background-color: white;
+    color: black;
+    padding: 0px 16px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:36px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+.youtubeVideo-profileBlockRight {
+    display:flex;
+    gap: 10px;
+    background-color: #a5a5a538;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.youtubeVideo-like {
+    display: flex;
+    gap: 10px;
+}
+
+.youtubeVideo-likesCount {
+    font-weight: 500;
+    padding-top: 5px;
+}
+
+.youtubeVideo-divider {
+    width: 0px;
+    height: 20px;
+    border: 1px solid;
+}
+
+.youtubeVideo-description {
+    display:flex;
+    flex-direction: column;
+    padding: 12px;
+    background-color: #a5a5a538;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    gap: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.youtubeVideo-commentSection {
+    display:flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.youtubeVideo-commentSectionTitle {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.youtubeVideo-typedComment {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.youtubeVideo-typedCommentProfile {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.youtubeVideo-addComment {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.addCommentInput {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 35px;
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid grey;
+    &:focus {
+        outline:none;
+    }
+    &::placeholder {
+        font-size: 16px;
+    }
+}
+
+.cancelSubmitComment {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cancelComment {
+    padding: 8px 16px;
+    border-radius: 18px;
+    border: 1px solid;
+    cursor: pointer;
+    &:hover {
+        background-color: white;
+        color:black;
+    }
+}
+
+.youtubeVideo-allComments {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.youtubeVideo-allCommentsSection {
+    display:flex;
+    flex-direction: column;
+}
+
+.youtubeVideo-allCommentsSectionHeader {
+    display:flex;
+    gap: 10px;
+}
+
+.ChannelName-comment {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.commentTimingOthers {
+    font-size: 14px;
+    color:#AAAAAA;
+}
+
+.youtubeVideo-allCommentsSectioncomments {
+    margin-top: 10px;
+}
+
+
+
+.videoSuggestions {
+    width: 100%;
+    max-width: 406px;
+    padding: 10px 15px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-top: 36px;
+   
+}
+
+.videoSuggestionsBlock {
+    display:flex;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.videoSuggestionsThumbnail {
+    width: 168px;
+    height: 94px;
+}
+
+.videoSuggestiosThumbnailImg {
+    width: inherit;
+}
+
+.videoSuggestionsAbout {
+    display:flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.videoSuggestionAbout-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.videoSuggestionAbout-Profile {
+    color:#ffffff9c;
+    font-size: 12px;
+}

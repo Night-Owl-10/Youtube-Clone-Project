@@ -3,6 +3,9 @@ import Header from './component/header/Header'
 import { Outlet } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
+import userContext from './utils/userContext'
+
+
 
 function App() {
 
@@ -13,13 +16,12 @@ function App() {
   }
 
   return (
-    <>
+    <userContext.Provider value={{sideBar: sidebar, setSidebar}}>
       <div className='App'>
          <Header hideSidebar={hideSidebar} sidebar={sidebar}/>
-         <Home sidebar={sidebar}/>
          <Outlet/>
       </div>
-    </>
+    </userContext.Provider>
   )
 }
 
