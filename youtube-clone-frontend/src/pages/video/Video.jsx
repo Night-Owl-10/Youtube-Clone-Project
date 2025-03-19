@@ -2,8 +2,11 @@ import "./Video.css"
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Video() {
+    const [videoComment, setVideoComment] = useState("");
+    console.log(videoComment)
     return(
         <div className="video">
             <div className="videoSection">
@@ -64,7 +67,7 @@ function Video() {
                     <div className="youtubeVideo-typedComment">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s" alt="" className="youtubeVideo-typedCommentProfile" />
                         <div className="youtubeVideo-addComment">
-                            <input type="text" placeholder="Add a Comment" className="addCommentInput"/>
+                            <input type="text" value={videoComment} onChange={(e) => {setVideoComment(e.target.value)}} placeholder="Add a Comment" className="addCommentInput"/>
                             <div className="cancelSubmitComment">
                                 <div className="cancelComment">Cancel</div>
                                 <div className="cancelComment">Comment</div>

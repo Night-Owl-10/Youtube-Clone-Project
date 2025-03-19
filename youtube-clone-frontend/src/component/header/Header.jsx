@@ -5,12 +5,25 @@ import SearchIcon from '@mui/icons-material/Search';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import CreateChannel from "../createChannel/CreateChannel";
 
 function Header({hideSidebar, sidebar}) {
+
+    const [channelPage, setChannelPage] = useState(false);
 
     function handleSidebar() {
         hideSidebar(!sidebar)
     }
+
+    function handleChannelPage() {
+        setChannelPage(!channelPage)
+    }
+
+    function handleCancelChannelPage() {
+        setChannelPage(false);
+    }
+
 
     return (
         <div className="Header">
@@ -35,19 +48,23 @@ function Header({hideSidebar, sidebar}) {
             </div>
 
             <div className="header-login">
-                <VideoCallIcon sx={{fontSize: "30px"}} className="addVideo-icon"/>  
-                <Link to="/signIn" style={{textDecoration: "none"}}><div className="login" >
+            <Link to="/upload" style={{textDecoration: "none"}}>
+            <VideoCallIcon sx={{fontSize: "30px"}} className="addVideo-icon"/>
+            </Link>
+
+                <div className="login" onClick={handleChannelPage} >
                       <AccountCircleIcon/>
                       <p>Sign In</p>
                       </div> 
-                </Link>
 
                 <div className="signIn">
-                    <div className="signIn-options">
-
-                    </div>
+                    <div className="signIn-options"></div>
                 </div>
+
             </div>
+                    {
+                        channelPage && <CreateChannel handleCancelChannelPage={handleCancelChannelPage}/>
+                    }
         </div>
     )
 }

@@ -19,11 +19,44 @@
     align-items: center;
 }
 
+.profilePage2 {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    flex: 1;
+    color: white;
+    margin-top: 56px;
+    justify-content: center;
+    align-items: center;
+}
+
 .profilPageTopSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 20px 0;
+}
+
+.profilePageTopSectionBanner{
+    width: 100%;
+    height: 250px;
+    padding: 0 0 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.profilePageProfileBannerImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.profilePageTopSectionImgContainer {
     width: 100%;
     display: flex;
     padding: 0 0 20px 0;
 }
+
 .profilePageTopSectionImg {
     width: 150px;
     height: 150px;

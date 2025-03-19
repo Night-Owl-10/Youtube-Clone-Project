@@ -1,10 +1,10 @@
-.signInPage {
+.videoUpload {
     padding-top: 56px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 92.2vh;
+    height: 92vh;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -12,58 +12,50 @@
     color: white;
 }
 
- .signInPageBox {
-    width: 35%;
+.uploadBox {
+    width: 40%;
     border-radius: 15px;
-    margin-top: 50px;
+    margin-top: 20px;
     box-shadow: 0.5px 0.5px 8px white;
-    padding: 60px;
- }
+    padding: 25px;
+}
 
- .signInPage-title {
+.uploadVideo-title {
     display:flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    font-weight: 550;
+    font-size: 35px;
 }
 
-.signInPageForm {
+.uploadForm {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-top: 25px;
-    width: 100%;
+    margin-top: 30px;
     align-items: center;
-    justify-content: center;
 }
 
-.signInFormUserName {
+.uploadFormInput {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.signInUserName {
-    width: 60%;
     height: 45px;
+    padding: 0 20px;
+    font-size: 16px;
     color: white;
-    padding: 0 10px;
+    box-sizing: border-box;
+    background-color: #222222;
     border: none;
     border-radius: 5px;
-    background-color: #222222;
 }
 
-.signInBtns {
+.uploadBtns {
     display: flex;
     gap: 30px;
     justify-content: center;
     margin-top: 30px;
 }
 
-.signInBtns-form {
+.uploadBtns-form {
     padding: 10px 20px;
     border: 1px solid;
     font-weight: 500;
@@ -75,5 +67,19 @@
     &:hover {
         background-color: white;
         color:black;
+    }
 }
+
+.uploadVideoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+
+.uploadThumbnailBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
 }

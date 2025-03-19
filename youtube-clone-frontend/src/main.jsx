@@ -7,6 +7,8 @@ import Home from './pages/Home/Home.jsx';
 import "./index.css"
 import Video from './pages/video/Video.jsx';
 import Profile from './pages/profile/Profiel.jsx';
+import VideoUpload from './pages/videoUpload/VideoUpload.jsx';
+import SignUp from './pages/signUp/SignUp.jsx';
 
 const appRouter = createBrowserRouter([
   {
@@ -22,12 +24,20 @@ const appRouter = createBrowserRouter([
         element: <SignIn/>
       },
       {
-        path:"/watch",
+        path: "/watch",
         element: <Video/>
       },
       {
-        path:"user",
+        path: "/user",
         element: <Profile/>
+      }, 
+      {
+        path: "/upload",
+        element: <VideoUpload/>
+      },
+      {
+        path: "/signUp",
+        element: <SignUp/>
       }
     ]
   },

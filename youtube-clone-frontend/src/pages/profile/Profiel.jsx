@@ -2,16 +2,24 @@ import SideBar from "../../component/SideBar/SideBar";
 import "./Profile.css"
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import { Link } from "react-router-dom";
+import userContext from "../../utils/userContext";
+import { useContext } from "react";
 
 function Profile() {
+
+    const data = useContext(userContext);
 
     return(
         <div className="profile">
             <SideBar/>
 
-            <div className="profilePage">
+            <div className={data.sideBar ? "profilePage" : "profilePage2"}>
 
                 <div className="profilPageTopSection">
+                <div className="profilePageTopSectionBanner">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyRwjwNv52Hi-7yGbiqxnQYKPi-zujLrYkHT0Cu4l25ev_AyWRhxptqJj71mj5WD4Szc&usqp=CAU" alt="" className="profilePageProfileBannerImage" />
+                    </div>
+                    <div className="profilePageTopSectionImgContainer">
                     <div className="profilePageTopSectionImg">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyRwjwNv52Hi-7yGbiqxnQYKPi-zujLrYkHT0Cu4l25ev_AyWRhxptqJj71mj5WD4Szc&usqp=CAU" alt="" className="profilePageProfileImage" />
                     </div>
@@ -26,6 +34,8 @@ function Profile() {
                                 About Section of Channel
                         </div>
                     </div>
+                    </div>
+                    
                 </div>
 
                 <div className="profilePageVideos">
