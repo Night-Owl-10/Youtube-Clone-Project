@@ -2,39 +2,70 @@ import "./Video.css"
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function Video() {
     const [videoComment, setVideoComment] = useState("");
-    console.log(videoComment)
+    const [data, setData] = useState(null);
+    const [videoUrl, setVideoUrl] = useState("");
+    const [comments, setComments] = useState([]);
+    const {id} = useParams();
+    console.log(id);
+
+    async function fetchVideoById() {
+        await axios.get(`http://localhost:4000/api/getVideoById/${id}`).then((response) => {
+            console.log(response.data.video);
+            setData(response.data.video);
+            setVideoUrl(response?.data?.video?.videoLink);
+        }).catch(err => {
+            console.log(err);
+          })
+    }
+
+    async function getCommentByVideoId() {
+        await axios.get(`http://localhost:4000/commentApi/comment/${id}`).then((response) => {
+            console.log(response);
+            setComments(response.data.comments);
+        }).catch(err => {
+            console.log(err);
+          })
+    }
+    
+    useEffect(() => {
+        fetchVideoById();
+        getCommentByVideoId();
+    }, [])
+
     return(
         <div className="video">
             <div className="videoSection">
             <div className="youtubeVideo">
-                    <video width="400" controls autoPlay className="youtubeVideo-video">
-                        <source src={"/Uncharted Drakes Fortune Trailer HD - YouTube [360p].mp4"} type="video/mp4"/>
-                        <source src={"/Uncharted Drakes Fortune Trailer HD - YouTube [360p].mp4"} type="video/webm"/>
+                    {data && <video width="400" controls autoPlay className="youtubeVideo-video">
+                        <source src={videoUrl} type="video/mp4"/>
+                        <source src={videoUrl} type="video/webm"/>
 
                         Your Browser does not support the video format.
-                    </video>
+                    </video>}
                     </div>
                     <div className="youtubeVideo-about">
                                 <div className="youtubeVideo-title">
-                                    {"JavaScript for Beginners"}
+                                    {data?.title}
                                 </div>
 
                                 <div className="youtubeVideo-profileBlock">
                                     <div className="youtubeVideo-profileBlockLeft">
-                                    <Link to="/user" style={{ textDecoration: 'none', color: 'inherit' }}><div className="youtubeVideo-profileBlockLeftImg">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s" alt="" className="youtubeVideo-profileBlockLeftImage" />
+                                    <Link to={`/user/${data?.user?._id}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="youtubeVideo-profileBlockLeftImg">
+                                            <img src={data?.user?.avatar} alt="" className="youtubeVideo-profileBlockLeftImage" />
                                         </div></Link>  
 
                                     <div className="youtubeVideo-subsView">
                                         <div className="youtubeVideo-profileName">
-                                            {"User1"}
+                                            {data?.channel?.channelName}
                                         </div>
                                         <div className="youtubeVideo-profileSubs">
-                                            {"2025-03-13"}
+                                            {data?.user?.createdAt.slice(0, 10)}
                                         </div>
                                     </div>
 
@@ -44,7 +75,7 @@ function Video() {
                                     <div className="youtubeVideo-profileBlockRight">
                                         <div className="youtubeVideo-like">
                                             <ThumbUpOutlinedIcon/>
-                                            <div className="youtubeVideo-likesCount">{32}</div>
+                                            <div className="youtubeVideo-likesCount">{data?.like}</div>
                                         </div>
                                         <div className="youtubeVideo-divider"></div>
 
@@ -55,13 +86,13 @@ function Video() {
                                 </div>
 
                                 <div className="youtubeVideo-description">
-                                    <div>2025-03-17</div>
-                                    <div>Complete Javascript Explained</div>
+                                    <div>{data?.createdAt.slice(0, 10)}</div>
+                                    <div>{data?.description}</div>
                                 </div>
                     </div>
 
                     <div className="youtubeVideo-commentSection">
-                        <div className="youtubeVideo-commentSectionTitle">2 Comments</div>
+                        <div className="youtubeVideo-commentSectionTitle">{comments.length} Comments</div>
                     
 
                     <div className="youtubeVideo-typedComment">
@@ -77,36 +108,27 @@ function Video() {
 
                     <div className="youtubeVideo-allComments">
 
-                        <div className="youtubeVideo-typedComment">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s" alt="" className="youtubeVideo-typedCommentProfile" />
+                        {
+                            comments.map((item, index) => {
+                                return(
+                                    <div className="youtubeVideo-typedComment">
+                        <img src={item?.user?.avatar} alt="" className="youtubeVideo-typedCommentProfile" />
                         <div className="youtubeVideo-allCommentsSection">
                             <div className="youtubeVideo-allCommentsSectionHeader">
-                                <div className="ChannelName-comment">UserName</div>
-                                <div className="commentTimingOthers">2025-03-17</div>
+                                <div className="ChannelName-comment">{item?.channel?.channelName}</div>
+                                <div className="commentTimingOthers">{item?.createdAt}</div>
                             </div>
 
                             <div className="youtubeVideo-allCommentsSectioncomments">
-                                MERN Stack
+                                {item?.message}
                             </div>
                         </div>
                         </div>
-
-                        <div className="youtubeVideo-typedComment">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s" alt="" className="youtubeVideo-typedCommentProfile" />
-                        <div className="youtubeVideo-allCommentsSection">
-                            <div className="youtubeVideo-allCommentsSectionHeader">
-                                <div className="ChannelName-comment">UserName</div>
-                                <div className="commentTimingOthers">2025-03-17</div>
-                            </div>
-
-                            <div className="youtubeVideo-allCommentsSectioncomments">
-                                MERN Stack
-                            </div>
-                        </div>
-                        </div>
+                                )
+                            })
+                        }
+     
                     </div>
-
-
             </div>
             </div>
 

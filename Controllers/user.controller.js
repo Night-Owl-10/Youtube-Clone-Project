@@ -39,7 +39,7 @@ exports.signIn = async(req, res) => {
                 const token = jwt.sign({userId: user._id}, "MySecretKey");
                 res.cookie("token", token, cookieOptions);
 
-                    res.json({message: "Logged in successfully", success: "true", token});
+                    res.json({message: "Signed In successfully", success: "true", token});
             } else {
                 res.status(400).json({error: "Invalid credentials"});
             }
@@ -50,5 +50,5 @@ exports.signIn = async(req, res) => {
 }
 
 exports.signOut = async(req, res) => {
-    res.clearCookie('token', cookieOptions).json({ message: 'Logged out successfully' })
+    res.clearCookie('token', cookieOptions).json({ message: 'Signed Out successfully' })
 }

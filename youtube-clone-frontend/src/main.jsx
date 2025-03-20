@@ -24,11 +24,11 @@ const appRouter = createBrowserRouter([
         element: <SignIn/>
       },
       {
-        path: "/watch",
+        path: "/watch/:id",
         element: <Video/>
       },
       {
-        path: "/user",
+        path: "/user/:id",
         element: <Profile/>
       }, 
       {

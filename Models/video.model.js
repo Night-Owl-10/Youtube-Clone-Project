@@ -6,6 +6,11 @@ const videoSchema = new mongoose.Schema({
         ref: "user",
         required: true,
     },
+    channel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "channel",
+        required: true,
+    },
     title: {
         type: String,
         required: true,
