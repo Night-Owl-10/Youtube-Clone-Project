@@ -55,7 +55,7 @@ function HomePage() {
     
                             <div className="youtube-title-name">
                                 <div className="youtube-videoTitle">{item?.title}</div>
-                                <div className="youtube-channelName">{item?.channel?.channelName}</div>
+                                <div className="youtube-channelName">{item?.user?.channelName}</div>
                                 <div className="youtube-videoViews">{item?.like} likes</div>
                             </div>
                         </div>

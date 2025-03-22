@@ -57,7 +57,7 @@
     gap: 10px;
     grid-template-columns: 384px 384px 384px;
     padding: 90px 0 20px 0;
-    height: 100vh;
+    height: 100%;
 }
 
 .homepage-main2 {
@@ -67,6 +67,7 @@
     gap: 30px;
     grid-template-columns: 326px 326px 326px 326px;
     padding: 90px 0 20px 10px;
+    height: 100%;
 }
 
 .youtube-videos {

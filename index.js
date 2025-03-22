@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 app.use(cors({
-    orgin: "http://localhost:5173",
+    origin: "http://localhost:5174",
     credentials: true
 }))
 
@@ -16,12 +16,10 @@ require("./Connection/connection")
 
 const AuthRoutes = require("./Routes/user.routes");
 const VideoRoutes = require("./Routes/video.routes");
-const ChannelRoutes = require("./Routes/channel.routes");
 const CommentRoutes = require("./Routes/comment.routes");
 
 app.use("/auth", AuthRoutes);
 app.use("/api", VideoRoutes);
-app.use("/api", ChannelRoutes);
 app.use("/commentApi", CommentRoutes);
 
 app.listen(port, () => {

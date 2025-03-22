@@ -4,8 +4,32 @@ import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import { Link } from "react-router-dom";
 import userContext from "../../utils/userContext";
 import { useContext } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Profile() {
+
+    const {id} = useParams();
+    console.log(id);
+
+    const [content, setContent] = useState([]);
+    const [user, setUser] = useState(null);
+
+    async function fetchProfileData() {
+        axios.get(`http://localhost:4000/api/${id}/channel`).then((response) => {
+            console.log(response);
+            console.log(response.data.video);
+            setContent(response.data.video);
+            setUser(response.data.video[0]?.user);
+        }).catch(err => {
+            console.log(err);
+          })
+    }
+
+    useEffect(() => {
+        fetchProfileData();
+    },[])
 
     const data = useContext(userContext);
 
@@ -16,22 +40,20 @@ function Profile() {
             <div className={data.sideBar ? "profilePage" : "profilePage2"}>
 
                 <div className="profilPageTopSection">
-                <div className="profilePageTopSectionBanner">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyRwjwNv52Hi-7yGbiqxnQYKPi-zujLrYkHT0Cu4l25ev_AyWRhxptqJj71mj5WD4Szc&usqp=CAU" alt="" className="profilePageProfileBannerImage" />
-                    </div>
+                
                     <div className="profilePageTopSectionImgContainer">
                     <div className="profilePageTopSectionImg">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyRwjwNv52Hi-7yGbiqxnQYKPi-zujLrYkHT0Cu4l25ev_AyWRhxptqJj71mj5WD4Szc&usqp=CAU" alt="" className="profilePageProfileImage" />
+                        <img src={user?.avatar} alt="" className="profilePageProfileImage" />
                     </div>
                     <div className="profilePageTopSectionAbout">
                         <div className="profilePageTopSectionAbout-name">
-                                NodeJs
+                                {user?.channelName}
                         </div>
                         <div className="profilePageTopSectionAbout-info">
-                                @User1 . 4 videos
+                                @{user?.userName} . {content.length} videos
                         </div>
                         <div className="profilePageTopSectionAbout-info">
-                                About Section of Channel
+                                {user?.channelDescription}
                         </div>
                     </div>
                     </div>
@@ -43,38 +65,26 @@ function Profile() {
 
                         <div className="profilePageVideos-videos">
 
-                        <Link to="/watch" style={{ textDecoration: 'none', color: 'inherit' }}><div className="profilePageVideos-videosBlock">
-                                <div className="profilePageVideos-videosThumbnail">
-                                    <img src="https://media.licdn.com/dms/image/v2/D4E12AQEBg943ptCYpg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1686391647921?e=2147483647&v=beta&t=4jKdvoBWv587Ek7xruyjjOaKoMjvAKw3eAN4MKlJZPc" alt="" className="profilePageVideos-videosThumbnailImg" />
+                            {
+                                content.map((item, key) => {
+                                    return(
+                                        <Link to={`/watch/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="profilePageVideos-videosBlock">
+                                    <div className="profilePageVideos-videosThumbnail">
+                                        <img src={item?.thumbnail} alt="" className="profilePageVideos-videosThumbnailImg" />
+                                    </div>
+    
+                                    <div className="profilePageVideos-videosDetails">
+                                    <div className="profilePageVideos-videosDetailsName">{item.title}</div>
+                                    <div className="profilePageVideos-videosDetailsAbout">{item.createdAt.slice(0, 10)}</div>
                                 </div>
+                                </div></Link>
+                                )})
+                                
+                                    
+                            }
 
-                                <div className="profilePageVideos-videosDetails">
-                                <div className="profilePageVideos-videosDetailsName">Video Title</div>
-                                <div className="profilePageVideos-videosDetailsAbout">Created at 2025-03-17</div>
-                            </div>
-                            </div></Link>
+                        
 
-                        <Link to="/watch" style={{ textDecoration: 'none', color: 'inherit' }}><div className="profilePageVideos-videosBlock">
-                                <div className="profilePageVideos-videosThumbnail">
-                                    <img src="https://media.licdn.com/dms/image/v2/D4E12AQEBg943ptCYpg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1686391647921?e=2147483647&v=beta&t=4jKdvoBWv587Ek7xruyjjOaKoMjvAKw3eAN4MKlJZPc" alt="" className="profilePageVideos-videosThumbnailImg" />
-                                </div>
-
-                                <div className="profilePageVideos-videosDetails">
-                                <div className="profilePageVideos-videosDetailsName">Video Title</div>
-                                <div className="profilePageVideos-videosDetailsAbout">Created at 2025-03-17</div>
-                            </div>
-                            </div></Link>
-
-                        <Link to="/watch" style={{ textDecoration: 'none', color: 'inherit' }}><div className="profilePageVideos-videosBlock">
-                                <div className="profilePageVideos-videosThumbnail">
-                                    <img src="https://media.licdn.com/dms/image/v2/D4E12AQEBg943ptCYpg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1686391647921?e=2147483647&v=beta&t=4jKdvoBWv587Ek7xruyjjOaKoMjvAKw3eAN4MKlJZPc" alt="" className="profilePageVideos-videosThumbnailImg" />
-                                </div>
-
-                                <div className="profilePageVideos-videosDetails">
-                                <div className="profilePageVideos-videosDetailsName">Video Title</div>
-                                <div className="profilePageVideos-videosDetailsAbout">Created at 2025-03-17</div>
-                            </div>
-                            </div></Link>
 
                         </div>
                 </div>

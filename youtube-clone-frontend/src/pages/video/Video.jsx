@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 function Video() {
     const [videoComment, setVideoComment] = useState("");
@@ -12,7 +13,7 @@ function Video() {
     const [videoUrl, setVideoUrl] = useState("");
     const [comments, setComments] = useState([]);
     const {id} = useParams();
-    console.log(id);
+    console.log(videoComment);
 
     async function fetchVideoById() {
         await axios.get(`http://localhost:4000/api/getVideoById/${id}`).then((response) => {
@@ -38,6 +39,22 @@ function Video() {
         getCommentByVideoId();
     }, [])
 
+    async function handleComment() {
+        const body = {
+            "message": videoComment,
+            "video": id
+        }
+        await axios.post("http://localhost:4000/commentApi/comment", body, {withCredentials: true}).then((response) => {
+            console.log(response)
+            const newComment = response.data.comment;
+            setComments([...comments, newComment]);
+            setVideoComment("");
+            window.location.reload();
+        }).catch(err => {
+            toast.error("Please SignIn first");
+        })
+    }
+
     return(
         <div className="video">
             <div className="videoSection">
@@ -62,7 +79,7 @@ function Video() {
 
                                     <div className="youtubeVideo-subsView">
                                         <div className="youtubeVideo-profileName">
-                                            {data?.channel?.channelName}
+                                            {data?.user?.channelName}
                                         </div>
                                         <div className="youtubeVideo-profileSubs">
                                             {data?.user?.createdAt.slice(0, 10)}
@@ -101,7 +118,7 @@ function Video() {
                             <input type="text" value={videoComment} onChange={(e) => {setVideoComment(e.target.value)}} placeholder="Add a Comment" className="addCommentInput"/>
                             <div className="cancelSubmitComment">
                                 <div className="cancelComment">Cancel</div>
-                                <div className="cancelComment">Comment</div>
+                                <div className="cancelComment" onClick={handleComment}>Comment</div>
                             </div>
                         </div>
                     </div>
@@ -115,8 +132,8 @@ function Video() {
                         <img src={item?.user?.avatar} alt="" className="youtubeVideo-typedCommentProfile" />
                         <div className="youtubeVideo-allCommentsSection">
                             <div className="youtubeVideo-allCommentsSectionHeader">
-                                <div className="ChannelName-comment">{item?.channel?.channelName}</div>
-                                <div className="commentTimingOthers">{item?.createdAt}</div>
+                                <div className="ChannelName-comment">{item?.user?.channelName}</div>
+                                <div className="commentTimingOthers">{item?.createdAt.slice(0, 10)}</div>
                             </div>
 
                             <div className="youtubeVideo-allCommentsSectioncomments">
@@ -200,6 +217,7 @@ function Video() {
                     </div>
                 </div>
             </div>
+                        <ToastContainer/>
             </div>
     )
 }

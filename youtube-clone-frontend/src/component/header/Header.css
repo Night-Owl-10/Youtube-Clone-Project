@@ -127,4 +127,27 @@
     box-shadow: 0.5px 0.5px 8px #3ea6ff;
 }
 
+.avatarLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top:10px;
+}
 
+.signIn-Channel {
+    position:absolute;
+    top: 65px;
+    width: 150px;
+    margin-right: 50px;
+    z-index: 20;
+}
+
+.signIn-Channel-options {
+    background-color: rgb(85, 85, 85);
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(34, 33, 33);
+    }
+}

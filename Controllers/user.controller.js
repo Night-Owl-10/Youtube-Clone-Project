@@ -10,7 +10,8 @@ const cookieOptions = {
 
 exports.signUp = async(req, res) => {
     try {
-        const { userName, email, password, avatar } = req.body;
+        const { userName, email, password, channelName, channelDescription, avatar } = req.body;
+        console.log(req.body)
         const isUserExist = await User.findOne({ userName});
         const isEmailExist = await User.findOne({ email});
         if(isUserExist) {
@@ -19,7 +20,7 @@ exports.signUp = async(req, res) => {
             res.status(400).json({error: "Account with this E-Mail Id already exist. Please try with some other E-Mail Id."});
         } else {
             let updatedPassword = await bcrypt.hash(password, 10);
-            const user = new User({ userName, email, password: updatedPassword, avatar });
+            const user = new User({ userName, email, password: updatedPassword, channelName, channelDescription, avatar });
             await user.save();
             res.status(201).json({ message: "User registered successfully", success: "yes", data:user });
         }
@@ -39,7 +40,7 @@ exports.signIn = async(req, res) => {
                 const token = jwt.sign({userId: user._id}, "MySecretKey");
                 res.cookie("token", token, cookieOptions);
 
-                    res.json({message: "Signed In successfully", success: "true", token});
+                    res.json({message: "Signed In successfully", success: "true", token, user});
             } else {
                 res.status(400).json({error: "Invalid credentials"});
             }

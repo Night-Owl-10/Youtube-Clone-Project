@@ -5,7 +5,7 @@ const Comment = require("../Models/comment.model");
 exports.addComment = async(req, res) => {
     try {
             let  {video, message} = req.body;
-            const comment = new Comment({user:req.user._id, channel: req.channel._id, video, message});
+            const comment = new Comment({user:req.user._id, video, message});
             await comment.save();
 
             res.status(201).json({
@@ -21,7 +21,7 @@ exports.addComment = async(req, res) => {
 exports.getCommentByVideoId = async(req, res) => {
         try {
                 let {videoId} = req.params;
-                const comments = await Comment.find({ video: videoId }).populate("user", "userName avatar createdAt").populate("channel", "channelName");
+                const comments = await Comment.find({ video: videoId }).populate("user", "userName channelName channelDescription avatar createdAt")
 
                 res.status(201).json({
                     message: "Success",

@@ -3,7 +3,10 @@ const User = require("../Models/user.model");
 const Channel = require("../Models/channel.model");
 
 const auth = async (req, res, next) => {
-    const token = req.cookies.token;
+   const token = req.cookies.token //|| req.headers.authorization?.split(" ")[1];
+
+   //let token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+   
     if(!token) {
         return res.status(401).json({error: "No token, authorization denied"});
     } else {
@@ -11,7 +14,7 @@ const auth = async (req, res, next) => {
                 const decode = jwt.verify(token, "MySecretKey");
                 req.user = await User.findById(decode.userId).select('-password');
 
-                /** */
+                /** 
                 if (!req.user) {
                     return res.status(404).json({ error: "User not found" });
                 }
@@ -19,7 +22,7 @@ const auth = async (req, res, next) => {
                 const channel = await Channel.findOne({ user: req.user._id });
         
                 req.channel = channel || null; 
-                /** */
+                 */
 
                 next();
         } catch(error) {

@@ -6,11 +6,6 @@ const commentSchema = new mongoose.Schema({
         ref: "user",
         required: true,
     },
-    channel: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "channel",
-        required: true,
-        },
     video: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "video",

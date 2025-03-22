@@ -3,26 +3,69 @@ import MenuIcon from '@mui/icons-material/Menu';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SearchIcon from '@mui/icons-material/Search';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import CreateChannel from "../createChannel/CreateChannel";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import SignIn from "../../pages/signIn/SignIn";
+import axios from "axios";
 
 function Header({hideSidebar, sidebar}) {
 
-    const [channelPage, setChannelPage] = useState(false);
+    const [useravatar, setAvatar] = useState("https://img.freepik.com/free-psd/contact-icon-illustration-isolated_23-2151903337.jpg");
+    const [SignInChannel, setSignInChannel]= useState(false);
+    const [signIn, setSignIn] = useState(false);
+    const [isSignedIn, setIsSignedIn] = useState(false);
+
+    const navigate = useNavigate();
+
 
     function handleSidebar() {
         hideSidebar(!sidebar)
     }
 
-    function handleChannelPage() {
-        setChannelPage(!channelPage)
+    function handleSignInChannel() {
+        setSignInChannel(prev => !prev);
+    }
+
+    function handleProfile() {
+        let userId = localStorage.getItem("userId");
+        navigate(`/user/${userId}`);
+        setSignInChannel(false);
+    }
+
+    function navFunction(button) {
+        setSignInChannel(false);
+        if(button === "signIn") {
+            setSignIn(true);
+        } else {
+            localStorage.clear();
+            getSignedOutFun()
+            setTimeout(() => {
+                navigate("/")
+                window.location.reload();
+            }, 1000);
+        }
+    }
+
+    async function getSignedOutFun() {
+        axios.post("http://localhost:4000/auth/signOut", {}, {withCredentials: true}).then((res) => {
+            console.log("Signed Out")
+        }).catch(err =>  {
+            console.log(err)
+        })
     }
 
     function handleCancelChannelPage() {
-        setChannelPage(false);
+        setSignIn(false);
     }
+
+    useEffect(() => {
+            let userAvatar = localStorage.getItem("userAvatar");
+            setIsSignedIn(localStorage.getItem("userId") !== null ? true : false);
+            if(userAvatar !== null) {
+                setAvatar(userAvatar)
+            }
+
+    },[])
 
 
     return (
@@ -51,19 +94,20 @@ function Header({hideSidebar, sidebar}) {
             <Link to="/upload" style={{textDecoration: "none"}}>
             <VideoCallIcon sx={{fontSize: "30px"}} className="addVideo-icon"/>
             </Link>
-
-                <div className="login" onClick={handleChannelPage} >
-                      <AccountCircleIcon/>
-                      <p>Sign In</p>
-                      </div> 
-
-                <div className="signIn">
-                    <div className="signIn-options"></div>
-                </div>
+                <img src={useravatar} alt="" className="avatarLogo" onClick={ handleSignInChannel}/>
+            
+              {SignInChannel && <div className="signIn-Channel">
+                    {isSignedIn && <div className="signIn-Channel-options" onClick={handleProfile} >View Channel</div>}
+                    {isSignedIn && <div className="signIn-Channel-options" onClick={() => navFunction("signOut")}>Sign Out</div>}
+                    {!isSignedIn &&  <div className="signIn-Channel-options" onClick={() => navFunction("signIn")}>Sign In</div>}
+                    
+                    
+                </div>}
+            
 
             </div>
                     {
-                        channelPage && <CreateChannel handleCancelChannelPage={handleCancelChannelPage}/>
+                        signIn && <SignIn handleCancelChannelPage={handleCancelChannelPage}/>
                     }
         </div>
     )

@@ -15,6 +15,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    channelName: {
+        type: String,
+        required: true,
+    },
+    channelDescription: {
+        type: String,
+        required: true,
+    },
     avatar: {
         type: String,
         required: true,
