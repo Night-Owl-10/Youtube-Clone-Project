@@ -1,7 +1,6 @@
 import './App.css'
 import Header from './component/header/Header'
 import { Outlet } from 'react-router-dom'
-import Home from './pages/Home/Home'
 import { useState } from 'react'
 import userContext from './utils/userContext'
 
