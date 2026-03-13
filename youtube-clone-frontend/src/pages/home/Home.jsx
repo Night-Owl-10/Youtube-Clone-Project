@@ -1,5 +1,5 @@
 import HomePage from "../../component/homepage/HomePage";
-import SideBar from "../../component/SideBar/SideBar";
+import SideBar from "../../component/sideBar/SideBar";
 import "./Home.css"
 
 function Home() {

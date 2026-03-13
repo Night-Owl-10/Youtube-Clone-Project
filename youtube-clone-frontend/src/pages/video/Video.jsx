@@ -116,7 +116,7 @@ function Video() {
                         <div className="youtubeVideo-allCommentsSection">
                             <div className="youtubeVideo-allCommentsSectionHeader">
                                 <div className="ChannelName-comment">{item?.channel?.channelName}</div>
-                                <div className="commentTimingOthers">{item?.createdAt}</div>
+                                <div className="commentTimingOthers">{item?.createdAt.slice(0, 10)}</div>
                             </div>
 
                             <div className="youtubeVideo-allCommentsSectioncomments">

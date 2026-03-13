@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 92vh;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -21,7 +22,7 @@
 }
 
 .uploadVideo-title {
-    display:flex;
+    display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -55,20 +56,7 @@
     margin-top: 30px;
 }
 
-.uploadBtns-form {
-    padding: 10px 20px;
-    border: 1px solid;
-    font-weight: 500;
-    font-size: 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-    &:hover {
-        background-color: white;
-        color:black;
-    }
-}
+
 
 .uploadVideoBlock {
     display: flex;
@@ -82,4 +70,181 @@
     flex-direction: column;
     align-items: start;
     width: 100%;
+}
+
+.no-channel-message {
+    background: #222;
+    color: #fff;
+    border-radius: 12px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+}
+
+.no-channel-message h2 {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.no-channel-message p {
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+/* Small Desktop: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .uploadBox {
+        width: 55%;
+        padding: 25px;
+    }
+
+    .no-channel-message {
+        padding: 30px 40px;
+        margin-top: 25px;
+    }
+
+    .no-channel-message h2 {
+        font-size: 1.5rem;
+    }
+
+    .no-channel-message p {
+        font-size: 1rem;
+    }
+}
+
+.uploadBtns-form {
+    padding: 10px 20px;
+    border: 1px solid;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+/* Mobile: 320px - 424px */
+@media (max-width: 424px) {
+    .videoUpload {
+        padding-top: 52px;
+    }
+
+    .uploadBox {
+        width: 90%;
+        margin-top: 15px;
+        padding: 16px 14px;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    .uploadVideo-title {
+        font-size: 24px;
+        gap: 8px;
+    }
+
+    .uploadForm {
+        gap: 16px;
+        margin-top: 18px;
+    }
+
+    .uploadFormInput {
+        height: 40px;
+        font-size: 14px;
+        padding: 0 12px;
+    }
+
+    .uploadBtns {
+        gap: 14px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .uploadBtns-form {
+        padding: 9px 18px;
+        font-size: 14px;
+    }
+
+    .no-channel-message {
+        padding: 24px 16px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .no-channel-message h2 {
+        font-size: 1.2rem;
+    }
+
+    .no-channel-message p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet Small: 425px - 639px */
+@media (min-width: 425px) and (max-width: 639px) {
+    .videoUpload {
+        padding-top: 54px;
+    }
+
+    .uploadBox {
+        width: 85%;
+        margin-top: 18px;
+        padding: 18px 16px;
+        border-radius: 12px;
+        box-sizing: border-box;
+    }
+
+    .uploadVideo-title {
+        font-size: 26px;
+        gap: 10px;
+    }
+
+    .uploadForm {
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .uploadFormInput {
+        height: 42px;
+        font-size: 14px;
+        padding: 0 14px;
+    }
+
+    .uploadBtns {
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+    .uploadBtns-form {
+        padding: 9px 18px;
+        font-size: 15px;
+    }
+
+    .no-channel-message {
+        padding: 28px 20px;
+        margin-top: 25px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .no-channel-message h2 {
+        font-size: 1.35rem;
+    }
+
+    .no-channel-message p {
+        font-size: 1rem;
+    }
 }

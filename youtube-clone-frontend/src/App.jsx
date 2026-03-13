@@ -1,10 +1,11 @@
 import './App.css'
 import Header from './component/header/Header'
 import { Outlet } from 'react-router-dom'
-import Home from './pages/Home/Home'
+import Home from './pages/home/Home'
 import { useState, useEffect } from 'react'
 import userContext from './utils/userContext'
 import axios from 'axios'
+import { AuthProvider } from './utils/authContext';
 
 
 function App() {
@@ -24,12 +25,14 @@ function App() {
   }
 
   return (
+    <AuthProvider>
     <userContext.Provider value={{sideBar: sidebar, setSidebar}}>
       <div className='App'>
          <Header hideSidebar={hideSidebar} sidebar={sidebar}/>
          <Outlet/>
       </div>
     </userContext.Provider>
+    </AuthProvider>
   )
 }
 

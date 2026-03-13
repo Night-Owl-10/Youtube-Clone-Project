@@ -7,10 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node modules
+node_modules/
+youtube-clone-frontend/node_modules/
+
+# Built files
+youtube-clone-frontend/dist/
+youtube-clone-frontend/dist-ssr/
+
+# Local envs
 *.local
+.env
+youtube-clone-frontend/.env
 
 # Editor directories and files
 .vscode/*

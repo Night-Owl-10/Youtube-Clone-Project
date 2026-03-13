@@ -96,3 +96,139 @@
     border-bottom: 1px solid rgb(86, 85, 85);
     margin-top: 15px;
 }
+
+/* Mobile: 320px - 424px */
+@media (max-width: 424px) {
+    .home-sideBar {
+        display: none;
+    }
+
+    .home-hideSideBar {
+        display: none;
+    }
+}
+
+/* Tablet Small: 425px - 639px */
+@media (min-width: 425px) and (max-width: 639px) {
+    .home-sideBar {
+        display: none;
+    }
+
+    .home-hideSideBar {
+        display: none;
+    }
+}
+
+/* Tablet: 640px - 767px */
+@media (min-width: 640px) and (max-width: 767px) {
+    .home-sideBar {
+        display: none;
+    }
+
+    .home-hideSideBar {
+        display: none;
+    }
+}
+
+/* Small Desktop: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .home-sideBar {
+        width: 80px;
+        padding: 10px;
+    }
+
+    .home-sidebar2-firstOption p {
+        display: none;
+    }
+
+    .home-sidebar2-firstOption svg {
+        display: none;
+    }
+
+    .home-sidebar-firstOption {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .home-sidebar-thirdOption {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .home-sidebar-firstOption p {
+        display: none;
+    }
+
+    .home-sidebar-thirdOption p {
+        display: none;
+    }
+}
+
+/* Medium Desktop: 1024px - 1439px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .home-sideBar {
+        width: 100px;
+        padding: 12px;
+    }
+
+    .home-sidebar2-firstOption p {
+        display: none;
+    }
+
+    .home-sidebar2-firstOption svg {
+        display: none;
+    }
+
+    .home-sidebar-firstOption {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .home-sidebar-thirdOption {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .home-sidebar-firstOption p {
+        display: none;
+    }
+
+    .home-sidebar-thirdOption p {
+        display: none;
+    }
+}
+
+/* Large Desktop: 1440px+ */
+@media (min-width: 1440px) {
+    .home-sideBar {
+        width: 275px;
+        padding: 14px;
+    }
+
+    .home-sidebar2-firstOption p {
+        display: block;
+    }
+
+    .home-sidebar2-firstOption svg {
+        display: block;
+    }
+
+    .home-sidebar-firstOption {
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .home-sidebar-thirdOption {
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .home-sidebar-firstOption p {
+        display: block;
+    }
+
+    .home-sidebar-thirdOption p {
+        display: block;
+    }
+}
+

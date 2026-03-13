@@ -17,6 +17,12 @@
     overflow-y: hidden;
 }
 
+.homepage,
+.homepage2 {
+    background: #000 !important;
+    min-height: 100vh;
+}
+
 .filter-options {
     display: flex;
     position: fixed;
@@ -69,6 +75,34 @@
     padding: 90px 0 20px 10px;
 }
 
+.homepage-main-guest {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: #000;
+}
+
+.youtube-guest-message {
+    background: #222;
+    color: #fff;
+    border-radius: 12px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+}
+
+.youtube-guest-message h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.youtube-guest-message p {
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
 .youtube-videos {
     color: white;
     text-decoration: none;
@@ -81,7 +115,7 @@
 
 .youtube-thumbnails {
     width: 100%;
-    position:relative;
+    position: relative;
     box-sizing: border-box;
     height: 216px;
     margin: 30px 0px 0px 30px;
@@ -145,4 +179,248 @@
 .youtube-videoViews {
     font-size: 14px;
     color: rgb(170, 170, 170);
+}
+
+/* Mobile: 320px - 424px */
+@media (max-width: 424px) {
+    .homepage {
+        margin-left: 0;
+        overflow-y: scroll;
+    }
+
+    .homepage2 {
+        overflow-y: scroll;
+    }
+
+    .filter-options {
+        padding: 15px 0 0 12px;
+        gap: 12px;
+        height: auto;
+    }
+
+    .filter-option {
+        height: 28px;
+        padding: 1px 8px;
+        font-size: 12px;
+    }
+
+    .homepage-main {
+        grid-template-columns: 1fr;
+        padding: 80px 10px 20px 10px;
+        gap: 8px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: 1fr;
+        padding: 80px 10px 20px 10px;
+        gap: 8px;
+    }
+
+    .youtube-videos {
+        height: auto;
+    }
+
+    .youtube-thumbnails {
+        margin: 15px 0 0 0;
+        height: 160px;
+    }
+
+    .youtube-title {
+        padding: 8px;
+    }
+
+    .youtube-guest-message {
+        padding: 24px 20px;
+        margin: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .youtube-guest-message h2 {
+        font-size: 1.25rem;
+    }
+
+    .youtube-guest-message p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet Small: 425px - 639px */
+@media (min-width: 425px) and (max-width: 639px) {
+    .homepage {
+        margin-left: 0;
+        overflow-y: scroll;
+    }
+
+    .homepage2 {
+        overflow-y: scroll;
+    }
+
+    .filter-options {
+        padding: 16px 0 0 15px;
+        gap: 14px;
+    }
+
+    .filter-option {
+        height: 30px;
+        padding: 1px 10px;
+    }
+
+    .homepage-main {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 85px 15px 20px 15px;
+        gap: 12px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 85px 15px 20px 15px;
+        gap: 12px;
+    }
+
+    .youtube-videos {
+        height: auto;
+    }
+
+    .youtube-thumbnails {
+        height: 180px;
+        margin: 20px 0 0 0;
+    }
+
+    .youtube-guest-message {
+        padding: 24px 20px;
+        margin: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .youtube-guest-message h2 {
+        font-size: 1.25rem;
+    }
+
+    .youtube-guest-message p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet: 640px - 767px */
+@media (min-width: 640px) and (max-width: 767px) {
+    .homepage {
+        margin-left: 0;
+        overflow-y: scroll;
+    }
+
+    .homepage2 {
+        overflow-y: scroll;
+    }
+
+    .filter-options {
+        padding: 18px 0 0 18px;
+        gap: 16px;
+    }
+
+    .homepage-main {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 90px 18px 20px 18px;
+        gap: 16px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 90px 18px 20px 18px;
+        gap: 16px;
+    }
+
+    .youtube-thumbnails {
+        height: 200px;
+        margin: 25px 0 0 0;
+    }
+}
+
+/* Small Desktop: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .homepage {
+        margin-left: 80px;
+        max-width: calc(100vw - 80px);
+        overflow-y: scroll;
+    }
+
+    .homepage2 {
+        overflow-y: scroll;
+    }
+
+    .filter-options {
+        padding: 18px 0 0 18px;
+        gap: 16px;
+    }
+
+    .homepage-main {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 90px 18px 20px 18px;
+        gap: 18px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 90px 18px 20px 18px;
+        gap: 18px;
+    }
+
+    .youtube-videos {
+        height: auto;
+    }
+
+    .youtube-thumbnails {
+        height: 220px;
+    }
+}
+
+/* Medium Desktop: 1024px - 1439px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .homepage {
+        margin-left: 100px;
+        max-width: calc(100vw - 100px);
+    }
+
+    .homepage-main {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 95px 20px 20px 20px;
+        gap: 20px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 95px 20px 20px 20px;
+        gap: 22px;
+    }
+
+    .youtube-videos {
+        height: auto;
+    }
+
+    .youtube-thumbnails {
+        height: 230px;
+    }
+}
+
+/* Large Desktop: 1440px+ */
+@media (min-width: 1440px) {
+    .homepage {
+        margin-left: 278px;
+        max-width: calc(100vw - 278px);
+    }
+
+    .homepage-main {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 100px 30px 20px 30px;
+        gap: 24px;
+    }
+
+    .homepage-main2 {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 100px 30px 20px 30px;
+        gap: 30px;
+    }
+
+    .youtube-thumbnails {
+        height: 240px;
+    }
 }
