@@ -83,7 +83,7 @@
     }
 }
 
-/* Mobile: 320px - 424px */
+
 @media (max-width: 424px) {
     .signInPage {
         padding-top: 52px;
@@ -132,7 +132,7 @@
     }
 }
 
-/* Tablet Small: 425px - 639px */
+
 @media (min-width: 425px) and (max-width: 639px) {
     .signInPage {
         padding-top: 54px;
@@ -175,7 +175,7 @@
     }
 }
 
-/* Tablet: 640px - 767px */
+
 @media (min-width: 640px) and (max-width: 767px) {
     .signInPage {
         padding-top: 56px;
@@ -214,7 +214,7 @@
     }
 }
 
-/* Small Desktop: 768px - 1023px */
+
 @media (min-width: 768px) and (max-width: 1023px) {
     .signInPage {
         padding-top: 56px;
@@ -252,7 +252,7 @@
     }
 }
 
-/* Medium Desktop: 1024px - 1439px */
+
 @media (min-width: 1024px) and (max-width: 1439px) {
     .signInPage {
         padding-top: 56px;
@@ -290,7 +290,7 @@
     }
 }
 
-/* Large Desktop: 1440px+ */
+
 @media (min-width: 1440px) {
     .signInPage {
         padding-top: 56px;

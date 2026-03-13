@@ -22,7 +22,6 @@ function Header({ hideSidebar, sidebar }) {
     const [showSearchResults, setShowSearchResults] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
 
-    // Debug logging
     console.log("Header render - Auth state:", { isSignedIn, channel, user, loading });
 
     function handleSidebar() {
@@ -56,18 +55,18 @@ function Header({ hideSidebar, sidebar }) {
             console.log("Logout error:", err);
         }
 
-        // Use the context's signOut function
+
         signOut();
         setSignInChannel(false);
         navigate("/");
     }
 
-    // Handle search input change
+
     function handleSearchInputChange(e) {
         setSearchQuery(e.target.value);
     }
 
-    // Handle search button click
+
     async function handleSearch() {
         if (!searchQuery.trim()) {
             return;
@@ -87,26 +86,26 @@ function Header({ hideSidebar, sidebar }) {
         }
     }
 
-    // Handle Enter key press in search input
+
     function handleSearchKeyPress(e) {
         if (e.key === 'Enter') {
             handleSearch();
         }
     }
 
-    // Handle clicking on a search result
+
     function handleSearchResultClick(videoId) {
         setShowSearchResults(false);
         setSearchQuery("");
         navigate(`/watch/${videoId}`);
     }
 
-    // Handle clicking outside search results to close them
+
     function handleClickOutside() {
         setShowSearchResults(false);
     }
 
-    // Get user avatar - use stored avatar or default
+
     const getUserAvatar = () => {
         if (user?.avatar) {
             return user.avatar;
@@ -114,7 +113,7 @@ function Header({ hideSidebar, sidebar }) {
         return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTq7NhS34vHRoyhJB5SwOcs5OA6Y3xlaj6OA&s";
     };
 
-    // Show loading spinner while authentication is being initialized
+
     if (loading) {
         return (
             <div className="Header">
@@ -176,7 +175,7 @@ function Header({ hideSidebar, sidebar }) {
                     </div>
                 </div>
 
-                {/* Search Results Dropdown */}
+
                 {showSearchResults && (
                     <div className="search-results" onClick={(e) => e.stopPropagation()}>
                         {isSearching ? (

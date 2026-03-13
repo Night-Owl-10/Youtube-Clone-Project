@@ -26,7 +26,6 @@ function SignIn() {
             const response = await axios.post("http://localhost:4000/auth/signIn", signInField, { withCredentials: true });
             console.log("Sign in response:", response.data);
 
-            // Store data in localStorage
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userId", response.data.user._id);
             localStorage.setItem("userAvatar", response.data.user.avatar);
@@ -37,7 +36,7 @@ function SignIn() {
                 userAvatar: response.data.user.avatar
             });
 
-            // Update auth context
+
             updateAuthState(response.data.user);
 
             navigate("/");

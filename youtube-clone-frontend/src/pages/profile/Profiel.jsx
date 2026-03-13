@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Profile() {
-    const {id} = useParams();
+    const { id } = useParams();
     const [content, setContent] = useState([]);
     const [user, setUser] = useState(null);
     const [channel, setChannel] = useState(null);
@@ -17,21 +17,21 @@ function Profile() {
 
     async function fetchProfileData() {
         try {
-            // Fetch channel info
+
             const channelRes = await axios.get(`http://localhost:4000/api/channel/user/${id}`);
             setChannel(channelRes.data.channel);
         } catch (err) {
             setChannel(null);
         }
         try {
-            // Fetch user info
+
             const userRes = await axios.get(`http://localhost:4000/auth/user/${id}`);
             setUser(userRes.data.user);
         } catch (err) {
             setUser(null);
         }
         try {
-            // Fetch videos by user
+
             const videoRes = await axios.get(`http://localhost:4000/api/${id}/channel`);
             setContent(videoRes.data.video || []);
         } catch (err) {
@@ -42,18 +42,17 @@ function Profile() {
 
     useEffect(() => {
         fetchProfileData();
-        // eslint-disable-next-line
     }, [id]);
 
     const data = useContext(userContext);
 
     if (loading) {
-        return <div className="profile"><SideBar/><div className="profilePage">Loading...</div></div>;
+        return <div className="profile"><SideBar /><div className="profilePage">Loading...</div></div>;
     }
 
-    return(
+    return (
         <div className="profile">
-            <SideBar/>
+            <SideBar />
             <div className={data.sideBar ? "profilePage" : "profilePage2"}>
                 <div className="profilPageTopSection">
                     <div className="profilePageTopSectionBanner">
@@ -77,7 +76,7 @@ function Profile() {
                     </div>
                 </div>
                 <div className="profilePageVideos">
-                    <div className="profilePageVideoTitle">Videos &nbsp; <ArrowRightOutlinedIcon sx={{fontSize: 35}}/></div>
+                    <div className="profilePageVideoTitle">Videos &nbsp; <ArrowRightOutlinedIcon sx={{ fontSize: 35 }} /></div>
                     <div className="profilePageVideos-videos">
                         {content.length === 0 ? (
                             <div className="profilePageNoVideosBox">

@@ -5,30 +5,29 @@ exports.channelDetails = async (req, res) => {
         if (req.channel) {
             return res.status(400).json({ error: "Channel already exists for this user" });
         }
-        
+
         const { channelName, channelDescription, channelBanner } = req.body;
-        
-        // Check if channel name already exists
+
         const existingChannel = await Channel.findOne({ channelName });
         if (existingChannel) {
             return res.status(400).json({ error: "Channel name already exists. Please choose a different name." });
         }
-        
-        const channel = new Channel({ 
-            user: req.user._id, 
-            channelName, 
-            channelDescription, 
+
+        const channel = new Channel({
+            user: req.user._id,
+            channelName,
+            channelDescription,
             channelBanner
         });
         await channel.save();
 
-        res.status(201).json({ 
-            success: "true", 
+        res.status(201).json({
+            success: "true",
             message: "Channel created successfully",
-            channel 
+            channel
         });
 
-    } catch(error) {
+    } catch (error) {
         console.error("Channel creation error:", error);
         if (error.code === 11000) {
             return res.status(400).json({ error: "Channel name already exists. Please choose a different name." });

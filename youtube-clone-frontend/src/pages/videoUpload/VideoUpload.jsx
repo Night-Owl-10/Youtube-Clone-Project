@@ -54,7 +54,7 @@ function VideoUpload() {
         }
     }, [auth.isSignedIn, navigate]);
 
-    // Show message if signed in but no channel
+
     if (auth.isSignedIn && !auth.channel) {
         return (
             <div className="videoUpload">

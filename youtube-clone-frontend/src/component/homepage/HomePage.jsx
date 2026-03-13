@@ -12,18 +12,18 @@ function HomePage() {
 
     useEffect(() => {
         axios.get("http://localhost:4000/api/allVideo").then(res => {
-          console.log(res.data.videos)
-          setContent(res.data.videos);
+            console.log(res.data.videos)
+            setContent(res.data.videos);
         }).catch(err => {
-          console.log(err);
+            console.log(err);
         })
-  }, [])
+    }, [])
 
     const data = useContext(userContext);
 
     const options = ["All", "Music", "Movies", "Games", "News", "Sports", "Shopping", "Courses", "Fashion & Beauty", "Podcast", "Educational", "Trailers", "Live", "Documentry", "Animals", "Social Media"]
-    
-    // Show YouTube-like message if not signed in
+
+
     if (!auth.isSignedIn) {
         return (
             <div className={data.sideBar ? "homepage" : "homepage2"}>
@@ -37,54 +37,54 @@ function HomePage() {
         );
     }
 
-    // Filter videos by selected category
+
     const filteredVideos = selectedCategory === "All"
         ? content
         : content.filter(item => (item.category && item.category.toLowerCase() === selectedCategory.toLowerCase()));
 
-    return(
+    return (
         <div className={data.sideBar ? "homepage" : "homepage2"}>
             <div className="filter-options">
-            {
-                options.map((item, index) => {
-                    return(
-                        <div
-                            key={index}
-                            className={`filter-option${selectedCategory === item ? " selected" : ""}`}
-                            onClick={() => setSelectedCategory(item)}
-                        >
-                            {item}
-                        </div>
-                    );
-                })
-            }
+                {
+                    options.map((item, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className={`filter-option${selectedCategory === item ? " selected" : ""}`}
+                                onClick={() => setSelectedCategory(item)}
+                            >
+                                {item}
+                            </div>
+                        );
+                    })
+                }
             </div>
 
-            <div className={data.sideBar ? "homepage-main": "homepage-main2"}>
+            <div className={data.sideBar ? "homepage-main" : "homepage-main2"}>
                 {
                     filteredVideos?.map((item, index) => {
                         return (
-                        <Link to={`/watch/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }} key={item._id}>
-                            <div className="youtube-videos">
-                                <div className="youtube-thumbnails">
-                                    <img src={item.thumbnail} alt="thumbnail" className="youtube-thumbnailPic" />
-                                    <div className="youtube-thumbnailTiming">
-                                        28:05
+                            <Link to={`/watch/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }} key={item._id}>
+                                <div className="youtube-videos">
+                                    <div className="youtube-thumbnails">
+                                        <img src={item.thumbnail} alt="thumbnail" className="youtube-thumbnailPic" />
+                                        <div className="youtube-thumbnailTiming">
+                                            28:05
+                                        </div>
+                                    </div>
+                                    <div className="youtube-title">
+                                        <div className="youtube-profile">
+                                            <img src={item?.user?.avatar} alt="profile" className="youtube-title-thumbnail" />
+                                        </div>
+                                        <div className="youtube-title-name">
+                                            <div className="youtube-videoTitle">{item?.title}</div>
+                                            <div className="youtube-channelName">{item?.channel?.channelName}</div>
+                                            <div className="youtube-videoViews">{item?.like} likes</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="youtube-title">
-                                    <div className="youtube-profile">
-                                        <img src={item?.user?.avatar} alt="profile" className="youtube-title-thumbnail" />
-                                    </div>
-                                    <div className="youtube-title-name">
-                                        <div className="youtube-videoTitle">{item?.title}</div>
-                                        <div className="youtube-channelName">{item?.channel?.channelName}</div>
-                                        <div className="youtube-videoViews">{item?.like} likes</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    );
+                            </Link>
+                        );
                     })
                 }
             </div>

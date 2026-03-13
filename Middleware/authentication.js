@@ -3,13 +3,12 @@ const User = require("../Models/user.model");
 const Channel = require("../Models/channel.model");
 
 const auth = async (req, res, next) => {
-    // Check for token in Authorization header first, then cookies
     let token = req.headers.authorization?.split(" ")[1] || req.cookies.token;
-    
-    if(!token) {
-        return res.status(401).json({error: "No token, authorization denied"});
+
+    if (!token) {
+        return res.status(401).json({ error: "No token, authorization denied" });
     }
-    
+
     try {
         const decode = jwt.verify(token, "MySecretKey");
         req.user = await User.findById(decode.userId).select('-password');
@@ -18,12 +17,11 @@ const auth = async (req, res, next) => {
             return res.status(404).json({ error: "User not found" });
         }
 
-        // Check if user has a channel
         const channel = await Channel.findOne({ user: req.user._id });
         req.channel = channel || null;
 
         next();
-    } catch(error) {
+    } catch (error) {
         console.error("Token verification error:", error);
         res.status(401).json({ error: "Token is not valid" });
     }

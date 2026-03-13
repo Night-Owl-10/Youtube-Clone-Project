@@ -69,7 +69,6 @@ function CreateChannel({ handleCancelChannelPage }) {
 
             toast.success("Channel created successfully!");
 
-            // Refresh auth state to update channel data
             await refreshAuthState();
 
             handleCancelChannelPage();

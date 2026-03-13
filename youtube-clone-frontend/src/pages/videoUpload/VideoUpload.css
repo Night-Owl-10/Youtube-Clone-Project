@@ -92,7 +92,7 @@
     color: #ccc;
 }
 
-/* Small Desktop: 768px - 1023px */
+
 @media (min-width: 768px) and (max-width: 1023px) {
     .uploadBox {
         width: 55%;
@@ -133,7 +133,7 @@
     }
 }
 
-/* Mobile: 320px - 424px */
+
 @media (max-width: 424px) {
     .videoUpload {
         padding-top: 52px;
@@ -192,7 +192,7 @@
     }
 }
 
-/* Tablet Small: 425px - 639px */
+
 @media (min-width: 425px) and (max-width: 639px) {
     .videoUpload {
         padding-top: 54px;

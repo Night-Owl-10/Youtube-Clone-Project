@@ -3,19 +3,19 @@ import axios from "axios";
 
 const AuthContext = createContext(null);
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [channel, setChannel] = useState(null);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Function to fetch channel data
+
     const fetchChannel = async (userId) => {
         if (!userId) {
             setChannel(null);
             return;
         }
-        
+
         try {
             console.log("Fetching channel for user:", userId);
             const response = await axios.get(`http://localhost:4000/api/channel/user/${userId}`);
@@ -27,7 +27,7 @@ export function AuthProvider({children}) {
         }
     };
 
-    // Function to update auth state
+
     const updateAuthState = (userData) => {
         console.log("Updating auth state with user data:", userData);
         if (userData) {
@@ -41,33 +41,33 @@ export function AuthProvider({children}) {
         }
     };
 
-    // Function to sign out
+
     const signOut = () => {
         console.log("Signing out user");
         localStorage.clear();
         updateAuthState(null);
     };
 
-    // Function to refresh auth state from localStorage
+
     const refreshAuthState = async () => {
         try {
             const storedUserId = localStorage.getItem("userId");
             const storedToken = localStorage.getItem("token");
             const storedUserAvatar = localStorage.getItem("userAvatar");
-            
+
             console.log("Refreshing auth state with stored data:", { storedUserId, storedToken, storedUserAvatar });
-            
+
             if (storedUserId && storedToken) {
-                // Create user object from stored data
+
                 const userData = {
                     _id: storedUserId,
                     avatar: storedUserAvatar
                 };
-                
+
                 setIsSignedIn(true);
                 setUser(userData);
-                
-                // Fetch channel data
+
+
                 await fetchChannel(storedUserId);
             } else {
                 setIsSignedIn(false);
@@ -88,20 +88,20 @@ export function AuthProvider({children}) {
                 const storedUserId = localStorage.getItem("userId");
                 const storedToken = localStorage.getItem("token");
                 const storedUserAvatar = localStorage.getItem("userAvatar");
-                
+
                 console.log("Initializing auth with stored data:", { storedUserId, storedToken, storedUserAvatar });
-                
+
                 if (storedUserId && storedToken) {
-                    // Create user object from stored data
+
                     const userData = {
                         _id: storedUserId,
                         avatar: storedUserAvatar
                     };
-                    
+
                     setIsSignedIn(true);
                     setUser(userData);
-                    
-                    // Fetch channel data
+
+
                     await fetchChannel(storedUserId);
                 } else {
                     setIsSignedIn(false);
@@ -141,7 +141,7 @@ export function AuthProvider({children}) {
 
 export default AuthContext;
 
-   
+
 
 
 

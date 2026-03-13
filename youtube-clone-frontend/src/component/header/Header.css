@@ -395,7 +395,7 @@
     }
 }
 
-/* Tablet: 640px - 767px */
+
 @media (min-width: 640px) and (max-width: 767px) {
     .Header {
         padding: 10px 16px;
@@ -432,7 +432,7 @@
     }
 }
 
-/* Small Desktop: 768px - 1023px */
+
 @media (min-width: 768px) and (max-width: 1023px) {
     .Header {
         padding: 10px 16px;
@@ -464,7 +464,7 @@
     }
 }
 
-/* Medium Desktop: 1024px - 1439px */
+
 @media (min-width: 1024px) and (max-width: 1439px) {
     .Header {
         padding: 10px 16px;
@@ -483,7 +483,7 @@
     }
 }
 
-/* Large Desktop: 1440px+ */
+
 @media (min-width: 1440px) {
     .Header {
         padding: 10px 20px;
