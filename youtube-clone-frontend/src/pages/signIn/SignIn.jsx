@@ -1,18 +1,23 @@
 import "./SignIn.css"
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
+import { toast } from "react-toastify";
 import AuthContext from "../../utils/authContext";
 
 function SignIn() {
     const [signInField, setSignInField] = useState({ "userName": "", "email": "", "password": "" });
     const navigate = useNavigate();
-    const { updateAuthState } = useContext(AuthContext);
+    const { updateAuthState, isSignedIn } = useContext(AuthContext);
 
     console.log(signInField);
+
+    useEffect(() => {
+        if (isSignedIn) {
+            navigate("/");
+        }
+    }, [isSignedIn, navigate]);
 
     function handleOnchangeInput(event, name) {
         setSignInField({
@@ -36,10 +41,9 @@ function SignIn() {
                 userAvatar: response.data.user.avatar
             });
 
-
             updateAuthState(response.data.user);
-
             navigate("/");
+            toast.success(response.data.message);
         } catch (err) {
             console.error("Sign in error:", err);
             toast.error(err.response?.data?.error || "Sign in failed");
@@ -75,7 +79,6 @@ function SignIn() {
                     <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}><div className="signInBtns-form">Cancel</div></Link>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 }

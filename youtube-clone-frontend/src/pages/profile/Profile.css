@@ -54,12 +54,14 @@
 .profilePageTopSectionImgContainer {
     width: 100%;
     display: flex;
+    align-items: center;
     padding: 0 0 20px 0;
 }
 
 .profilePageTopSectionImg {
     width: 150px;
     height: 150px;
+    flex-shrink: 0;
 }
 
 .profilePageProfileImage {
@@ -102,13 +104,16 @@
 
 .profilePageVideos-videos {
     display: flex;
-    gap: 10px;
-    height: 100vh;
+    gap: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 20px 0px;
+    height: 50vh;
 }
 
 .profilePageVideos-videosBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 210px;
     cursor: pointer;
 }
@@ -121,11 +126,21 @@
 .profilePageVideos-videosThumbnailImg {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.profilePageVideos-videosDetails-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
 }
 
 .profilePageVideos-videosDetails {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     width: 100%;
 }
 
@@ -173,6 +188,68 @@
 .profilePageNoVideosBox p {
     font-size: 1.1rem;
     color: #ccc;
+}
+
+.profilePageVideos-videosDetailsOptionsIcon {
+    cursor: pointer;
+    position: relative;
+}
+
+.profilePageVideos-videosDetailsOptionsList {
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    background-color: gray;
+    width: 120px;
+    color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.profilePageVideos-videosDetailsOptionsListItem {
+    cursor: pointer;
+    padding: 10px;
+
+    &:hover {
+        background-color: #a5a5a538;
+    }
+}
+
+.profilePageTopSectionDeleteChannel {
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid;
+    font-weight: 400;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: flex-end;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+.profilePageTopSectionDeleteChannelText {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px
+}
+
+.profilePageTopSectionSubscribe {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    width: fit-content;
 }
 
 /* Mobile: 320px - 424px */
@@ -251,6 +328,21 @@
     .profilePageVideos-videosDetailsAbout {
         font-size: 11px;
     }
+
+    .profilePageTopSectionDeleteChannel {
+        min-width: 100px;
+        padding: 5px;
+    }
+
+    .profilePageTopSectionDeleteChannelText {
+        font-size: 12px;
+    }
+
+    .profilePageTopSectionSubscribe {
+        padding: 5px;
+        font-size: 12px;
+        font-weight: 400;
+    }
 }
 
 
@@ -328,6 +420,21 @@
 
     .profilePageVideos-videosDetailsAbout {
         font-size: 12px;
+    }
+
+    .profilePageTopSectionDeleteChannel {
+        min-width: 110px;
+        padding: 8px;
+    }
+
+    .profilePageTopSectionDeleteChannelText {
+        font-size: 14px;
+    }
+
+    .profilePageTopSectionSubscribe {
+        padding: 8px;
+        font-size: 14px;
+        font-weight: 400;
     }
 }
 
@@ -506,7 +613,7 @@
     }
 
     .profilePageVideos-videosBlock {
-        width: 18%;
+        width: 22%;
     }
 
     .profilePageVideos-videosThumbnail {

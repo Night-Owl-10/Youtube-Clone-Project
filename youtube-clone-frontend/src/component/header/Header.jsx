@@ -9,6 +9,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import CreateChannel from "../createChannel/CreateChannel";
 import AuthContext from "../../utils/authContext";
+import { toast } from "react-toastify";
 
 function Header({ hideSidebar, sidebar }) {
 
@@ -49,7 +50,8 @@ function Header({ hideSidebar, sidebar }) {
 
     async function handleSignOut() {
         try {
-            await axios.post("http://localhost:4000/auth/signOut", {}, { withCredentials: true });
+            const res = await axios.post("http://localhost:4000/auth/signOut", {}, { withCredentials: true });
+            toast.success(res.data.message);
             console.log("Logout successful");
         } catch (err) {
             console.log("Logout error:", err);
@@ -112,6 +114,15 @@ function Header({ hideSidebar, sidebar }) {
         }
         return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTq7NhS34vHRoyhJB5SwOcs5OA6Y3xlaj6OA&s";
     };
+
+    async function handleDeleteAccount() {
+        const userId = localStorage.getItem("userId");
+        const res = await axios.delete(`http://localhost:4000/auth/deleteUser/${userId}`, { withCredentials: true });
+        toast.success(res.data.message);
+        signOut();
+        setSignInChannel(false);
+        navigate("/");
+    }
 
 
     if (loading) {
@@ -225,6 +236,7 @@ function Header({ hideSidebar, sidebar }) {
                         {channel && <div className="signIn-Channel-options" onClick={handleProfile}>View Channel</div>}
                         {!channel && <div className="signIn-Channel-options" onClick={handleChannelPage}>Create Channel</div>}
                         {isSignedIn && <div className="signIn-Channel-options" onClick={handleSignOut}>Sign Out</div>}
+                        {isSignedIn && <div className="signIn-Channel-options" onClick={handleDeleteAccount}>Delete Account</div>}
                     </div>
                 }
 

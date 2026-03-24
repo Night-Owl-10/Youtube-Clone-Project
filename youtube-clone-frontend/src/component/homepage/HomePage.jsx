@@ -26,7 +26,7 @@ function HomePage() {
 
     if (!auth.isSignedIn) {
         return (
-            <div className={data.sideBar ? "homepage" : "homepage2"}>
+            <div className={"homepage2"}>
                 <div className="homepage-main-guest">
                     <div className="youtube-guest-message">
                         <h2>Try searching to get started</h2>
@@ -79,7 +79,10 @@ function HomePage() {
                                         <div className="youtube-title-name">
                                             <div className="youtube-videoTitle">{item?.title}</div>
                                             <div className="youtube-channelName">{item?.channel?.channelName}</div>
-                                            <div className="youtube-videoViews">{item?.like} likes</div>
+                                            <div className="youtube-videoInfo">
+                                                <div className="youtube-videoViews">{item?.views} views</div>
+                                                <div className="youtube-videoCreatedAt">{item?.createdAt.slice(0, 10)}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

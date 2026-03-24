@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 92.2vh;
+    min-height: 100vh;
+    box-sizing: border-box;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -87,7 +88,6 @@
 @media (max-width: 424px) {
     .signInPage {
         padding-top: 52px;
-        height: 93vh;
     }
 
     .signInPageBox {
@@ -136,7 +136,6 @@
 @media (min-width: 425px) and (max-width: 639px) {
     .signInPage {
         padding-top: 54px;
-        height: 92vh;
     }
 
     .signInPageBox {
@@ -179,7 +178,6 @@
 @media (min-width: 640px) and (max-width: 767px) {
     .signInPage {
         padding-top: 56px;
-        height: 91vh;
     }
 
     .signInPageBox {
@@ -218,7 +216,6 @@
 @media (min-width: 768px) and (max-width: 1023px) {
     .signInPage {
         padding-top: 56px;
-        height: 90vh;
     }
 
     .signInPageBox {
@@ -256,7 +253,6 @@
 @media (min-width: 1024px) and (max-width: 1439px) {
     .signInPage {
         padding-top: 56px;
-        height: 89vh;
     }
 
     .signInPageBox {
@@ -294,7 +290,6 @@
 @media (min-width: 1440px) {
     .signInPage {
         padding-top: 56px;
-        height: 88vh;
     }
 
     .signInPageBox {

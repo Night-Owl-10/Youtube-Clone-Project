@@ -6,7 +6,8 @@ import { useState, useEffect } from 'react'
 import userContext from './utils/userContext'
 import axios from 'axios'
 import { AuthProvider } from './utils/authContext';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/ReactToastify.css';
 
 function App() {
 
@@ -20,18 +21,19 @@ function App() {
         })
   }, [])*/
 
- function hideSidebar(value) {
-        setSidebar(value);
+  function hideSidebar(value) {
+    setSidebar(value);
   }
 
   return (
     <AuthProvider>
-    <userContext.Provider value={{sideBar: sidebar, setSidebar}}>
-      <div className='App'>
-         <Header hideSidebar={hideSidebar} sidebar={sidebar}/>
-         <Outlet/>
-      </div>
-    </userContext.Provider>
+      <userContext.Provider value={{ sideBar: sidebar, setSidebar }}>
+        <div className='App'>
+          <Header hideSidebar={hideSidebar} sidebar={sidebar} />
+          <Outlet />
+          <ToastContainer />
+        </div>
+      </userContext.Provider>
     </AuthProvider>
   )
 }

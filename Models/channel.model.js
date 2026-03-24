@@ -5,7 +5,7 @@ const channelSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
         required: true,
-        },
+    },
     channelName: {
         type: String,
         required: true,
@@ -18,7 +18,11 @@ const channelSchema = new mongoose.Schema({
     channelBanner: {
         type: String,
         required: true,
-    }
-}, {timestamps: true})
+    },
+    subscribers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    }]
+}, { timestamps: true })
 
 module.exports = mongoose.model("channel", channelSchema);

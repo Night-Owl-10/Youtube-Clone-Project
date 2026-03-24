@@ -1,18 +1,26 @@
 import "./SignUp.css"
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import AuthContext from "../../utils/authContext";
 
 function SignUp() {
     const [ulpoadedImageURL, setUlpoadedImageURL] = useState("https://isobarscience.com/wp-content/uploads/2020/09/default-profile-picture1.jpg");
     const [signUpField, setSignUpField] = useState({ "userName": "", "email": "", "password": "", "avatar": ulpoadedImageURL });
     const [loader, setLoader] = useState(false)
     const navigate = useNavigate();
+    const { isSignedIn } = useContext(AuthContext);
     console.log(signUpField);
+
+    useEffect(() => {
+        if (isSignedIn) {
+            navigate("/");
+        }
+    }, [isSignedIn, navigate]);
 
     function handleInputFields(event, name) {
         setSignUpField({
@@ -88,7 +96,6 @@ function SignUp() {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </div>
     )
 }

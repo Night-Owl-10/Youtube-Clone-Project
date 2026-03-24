@@ -1,0 +1,57 @@
+.pageNotFound {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+}
+
+.pageNotFoundImageContainer {
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageNotFoundImage {
+    height: 100%;
+    width: 100%;
+}
+
+.pageNotFoundText {
+    display: flex;
+    gap: 20px;
+}
+
+.pageNotFoundBtn {
+    padding: 10px 20px;
+    border: 1px solid;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+
+@media (max-width: 426px) {
+    .pageNotFoundImageContainer {
+        height: 30%;
+        width: 100%;
+    }
+}

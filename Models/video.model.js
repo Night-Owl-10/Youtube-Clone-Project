@@ -28,16 +28,20 @@ const videoSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        default:"All"
+        default: "All"
     },
-    like: {
-        type: Number,
-        default: 0
-    },
-    dislike: {
+    like: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    }],
+    dislike: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    }],
+    views: {
         type: Number,
         default: 0
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model("video", videoSchema);

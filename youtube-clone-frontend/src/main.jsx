@@ -9,44 +9,45 @@ import Video from './pages/video/Video.jsx';
 import Profile from './pages/profile/Profiel.jsx';
 import VideoUpload from './pages/videoUpload/VideoUpload.jsx';
 import SignUp from './pages/signUp/SignUp.jsx';
+import PageNotFound from './pages/pageNotFound/PageNotFound.jsx';
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
       {
         path: "/",
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: "/signIn",
-        element: <SignIn/>
+        element: <SignIn />
       },
       {
         path: "/watch/:id",
-        element: <Video/>
+        element: <Video />
       },
       {
         path: "/user/:id",
-        element: <Profile/>
-      }, 
+        element: <Profile />
+      },
       {
         path: "/upload",
-        element: <VideoUpload/>
+        element: <VideoUpload />
       },
       {
         path: "/signUp",
-        element: <SignUp/>
+        element: <SignUp />
       }
-    ]
+    ],
+    errorElement: <PageNotFound />
   },
 
- 
-  ])
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router= {appRouter}/>
+    <RouterProvider router={appRouter} />
   </StrictMode>,
 )

@@ -3,6 +3,14 @@ import axios from "axios";
 
 const AuthContext = createContext(null);
 
+const parseJwt = (token) => {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+};
+
 export function AuthProvider({ children }) {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [channel, setChannel] = useState(null);
@@ -58,6 +66,12 @@ export function AuthProvider({ children }) {
             console.log("Refreshing auth state with stored data:", { storedUserId, storedToken, storedUserAvatar });
 
             if (storedUserId && storedToken) {
+                const decodedToken = parseJwt(storedToken);
+                if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                    console.log("Token expired during refresh");
+                    signOut();
+                    return;
+                }
 
                 const userData = {
                     _id: storedUserId,
@@ -92,6 +106,13 @@ export function AuthProvider({ children }) {
                 console.log("Initializing auth with stored data:", { storedUserId, storedToken, storedUserAvatar });
 
                 if (storedUserId && storedToken) {
+                    const decodedToken = parseJwt(storedToken);
+                    if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                        console.log("Token expired during initialization");
+                        signOut();
+                        setLoading(false);
+                        return;
+                    }
 
                     const userData = {
                         _id: storedUserId,

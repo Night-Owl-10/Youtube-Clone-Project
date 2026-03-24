@@ -3,9 +3,10 @@
     flex-direction: column;
     overflow-x: hidden;
     flex: 1;
-    margin-left: 267px;
+    margin-left: 275px;
     min-height: 100vh;
     overflow-y: hidden;
+    padding-bottom: 50px;
 }
 
 .homepage2 {
@@ -15,6 +16,7 @@
     flex: 1;
     min-height: 100vh;
     overflow-y: hidden;
+    padding-bottom: 50px;
 }
 
 .homepage,
@@ -63,7 +65,6 @@
     gap: 10px;
     grid-template-columns: 384px 384px 384px;
     padding: 90px 0 20px 0;
-    height: 100vh;
 }
 
 .homepage-main2 {
@@ -118,7 +119,7 @@
     position: relative;
     box-sizing: border-box;
     height: 216px;
-    margin: 30px 0px 0px 30px;
+    margin: 30px 0px 0px 0px;
 }
 
 .youtube-thumbnailPic {
@@ -140,20 +141,21 @@
 .youtube-title {
     display: flex;
     padding: 10px;
+    align-items: center;
 }
 
 .youtube-profile {
-    width: 50px;
+    width: 70px;
     height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    border-radius: 100%;
+    margin-left: 30px;
 }
 
 .youtube-title-thumbnail {
     width: 100%;
-    border-radius: 50%;
-    margin-left: 30px
+    height: 100%;
+    object-fit: cover;
 }
 
 .youtube-title-name {
@@ -162,18 +164,23 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin-left: 30px
+    margin-left: 10px
 }
 
 .youtube-videoTitle {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .youtube-channelName {
     margin: 5px;
-    font-size: 18px;
+    font-size: 14px;
     color: rgb(170, 170, 170);
+}
+
+.youtube-videoInfo {
+    display: flex;
+    gap: 10px;
 }
 
 .youtube-videoViews {
@@ -181,8 +188,13 @@
     color: rgb(170, 170, 170);
 }
 
+.youtube-videoCreatedAt {
+    font-size: 14px;
+    color: rgb(170, 170, 170);
+}
 
-@media (max-width: 424px) {
+
+@media (max-width: 426px) {
     .homepage {
         margin-left: 0;
         overflow-y: scroll;
@@ -245,7 +257,7 @@
 }
 
 
-@media (min-width: 425px) and (max-width: 639px) {
+@media (min-width: 426px) and (max-width: 639px) {
     .homepage {
         margin-left: 0;
         overflow-y: scroll;
@@ -364,6 +376,25 @@
         gap: 18px;
     }
 
+    .homepage-main-guest {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .youtube-guest-message {
+        padding: 30px 45px;
+        width: 80%;
+        box-sizing: border-box;
+    }
+
+    .youtube-guest-message h2 {
+        font-size: 1.6rem;
+    }
+
+    .youtube-guest-message p {
+        font-size: 0.95rem;
+    }
+
     .youtube-videos {
         height: auto;
     }
@@ -404,7 +435,7 @@
 
 @media (min-width: 1440px) {
     .homepage {
-        margin-left: 278px;
+        margin-left: 275px;
         max-width: calc(100vw - 278px);
     }
 

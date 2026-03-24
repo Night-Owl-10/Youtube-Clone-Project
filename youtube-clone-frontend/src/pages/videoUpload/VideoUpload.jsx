@@ -6,8 +6,10 @@ import axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import AuthContext from "../../utils/authContext";
+import { toast } from "react-toastify";
 
 function VideoUpload() {
+    const categories = ["All", "Music", "Movies", "Games", "News", "Sports", "Shopping", "Courses", "Fashion & Beauty", "Podcast", "Educational", "Trailers", "Live", "Documentry", "Animals", "Social Media"];
     const [videoInputField, setVideoInputField] = useState({ "title": "", "description": "", "videoLink": "", "thumbnail": "", "category": "" });
     const [loader, setLoader] = useState(false)
     const navigate = useNavigate();
@@ -74,10 +76,13 @@ function VideoUpload() {
 
     async function handleSubmitFunction() {
         await axios.post("http://localhost:4000/api/video", videoInputField, { withCredentials: true }).then((response) => {
-            console.log(response)
+            console.log(response);
+            toast.success(response.data.message);
+            navigate("/");
         }).catch(err => {
             setLoader(false);
             console.log(err);
+            toast.error(err.response?.data?.error || "Video upload failed");
         })
     }
 
@@ -95,7 +100,12 @@ function VideoUpload() {
                         <input type="file" accept="video/mp4, video/webm, video/*" onChange={(e) => uploadImage(e, "video")} />
                     </div>
                     <input type="text" value={videoInputField.title} onChange={(e) => handleOnchangeInput(e, "title")} placeholder="Video Title" className="uploadFormInput" />
-                    <input type="text" value={videoInputField.category} onChange={(e) => handleOnchangeInput(e, "category")} placeholder="Video Category" className="uploadFormInput" />
+                    <select value={videoInputField.category} onChange={(e) => handleOnchangeInput(e, "category")} className="uploadFormInput">
+                        <option value="" disabled>Select Video Category</option>
+                        {categories.map((cat, index) => (
+                            <option key={index} value={cat}>{cat}</option>
+                        ))}
+                    </select>
                     <input type="text" value={videoInputField.description} onChange={(e) => handleOnchangeInput(e, "description")} placeholder="Video Description" className="uploadFormInput" />
                     <div className="uploadThumbnailBlock">
                         <p>Upload Thumbnail:</p>

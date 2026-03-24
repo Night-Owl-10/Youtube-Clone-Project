@@ -9,5 +9,9 @@ router.get("/allVideo", videoController.getAllVideo);
 router.get("/search", videoController.searchVideos);
 router.get("/getVideoById/:id", videoController.getVideoById);
 router.get("/:userId/channel", videoController.getAllVideoByUserID);
+router.put("/view/:id", videoController.handleViewCount);
+router.put("/like/:id", auth, videoController.likeVideo);
+router.put("/dislike/:id", auth, videoController.dislikeVideo);
+router.delete("/deleteVideo/:id", auth, videoController.deleteVideo);
 
 module.exports = router;

@@ -1,4 +1,7 @@
 const Channel = require("../Models/channel.model");
+const Video = require("../Models/video.model");
+const Comment = require("../Models/comment.model");
+
 
 exports.channelDetails = async (req, res) => {
     try {
@@ -7,6 +10,10 @@ exports.channelDetails = async (req, res) => {
         }
 
         const { channelName, channelDescription, channelBanner } = req.body;
+
+        if (!channelName || !channelDescription || !channelBanner) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
 
         const existingChannel = await Channel.findOne({ channelName });
         if (existingChannel) {
@@ -46,5 +53,58 @@ exports.getChannelByUserId = async (req, res) => {
     } catch (error) {
         console.error("Get channel error:", error);
         res.status(500).json({ error: "Server error" });
+    }
+};
+
+exports.subscribeChannel = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userId = req.user._id;
+
+        const channel = await Channel.findById(id);
+        if (!channel) {
+            return res.status(404).json({ error: "Channel not found" });
+        }
+
+        if (!Array.isArray(channel.subscribers)) channel.subscribers = [];
+
+        const hasSubscribed = channel.subscribers.some(id => id.toString() === userId.toString());
+
+        if (hasSubscribed) {
+            channel.subscribers.pull(userId);
+        } else {
+            channel.subscribers.push(userId);
+        }
+
+        await channel.save();
+        res.status(200).json({ success: "true", message: "Channel subscription updated", channel });
+    } catch (error) {
+        console.error("Subscribe error:", error);
+        res.status(500).json({ error: "Server Error" });
+    }
+};
+
+exports.deleteChannel = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userId = req.user._id;
+
+        const channel = await Channel.findById(id);
+        if (!channel) {
+            return res.status(404).json({ error: "Channel not found" });
+        }
+
+        if (channel.user.toString() !== userId.toString()) {
+            return res.status(403).json({ error: "Unauthorized" });
+        }
+
+        await Video.deleteMany({ channel: id });
+        await Comment.deleteMany({ channel: id });
+        await channel.deleteOne();
+
+        res.status(200).json({ success: "true", message: "Channel deleted successfully" });
+    } catch (error) {
+        console.error("Delete channel error:", error);
+        res.status(500).json({ error: "Server Error" });
     }
 };
