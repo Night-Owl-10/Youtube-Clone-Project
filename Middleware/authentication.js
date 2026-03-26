@@ -10,7 +10,7 @@ const auth = async (req, res, next) => {
     }
 
     try {
-        const decode = jwt.verify(token, "MySecretKey");
+        const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
         req.user = await User.findById(decode.userId).select('-password');
 
         if (!req.user) {

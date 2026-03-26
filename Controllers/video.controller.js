@@ -167,11 +167,16 @@ exports.dislikeVideo = async (req, res) => {
 exports.deleteVideo = async (req, res) => {
     try {
         const { id } = req.params;
-        const video = await Video.findByIdAndDelete(id);
+        const userId = req.user._id;
+        const video = await Video.findById(id);
         await Comment.deleteMany({ video: id });
         if (!video) {
             return res.status(404).json({ error: "Video not found" });
         }
+        if (video.user.toString() !== userId.toString()) {
+            return res.status(403).json({ error: "You are not authorized to delete this video" });
+        }
+        await Video.findByIdAndDelete(id);
         res.status(200).json({ success: "true", message: "Video deleted successfully" });
     } catch (error) {
         console.error("Delete error:", error);

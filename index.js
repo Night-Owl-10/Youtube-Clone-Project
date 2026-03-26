@@ -3,6 +3,8 @@ const app = express();
 const port = 4000;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+require("dotenv").config();
+
 
 app.use(cors({
     origin: "http://localhost:5173",
