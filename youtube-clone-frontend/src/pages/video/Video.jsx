@@ -1,7 +1,7 @@
 import "./Video.css"
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -24,6 +24,10 @@ function Video() {
     const [editCommentText, setEditCommentText] = useState("");
     const { id } = useParams();
     console.log(id);
+
+    if (!user) {
+        return <Navigate to="/" replace />;
+    }
 
     async function fetchVideoById() {
         await axios.get(`${import.meta.env.VITE_API_URL}/api/getVideoById/${id}`).then((response) => {
