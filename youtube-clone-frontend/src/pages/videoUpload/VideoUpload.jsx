@@ -29,7 +29,7 @@ function VideoUpload() {
         data.append("upload_preset", "youtube-clone");
         try {
             //cloudName = "dru7e6cnq"
-            const response = await axios.post(`https://api.cloudinary.com/v1_1/dru7e6cnq/${type}/upload`, data);
+            const response = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/${type}/upload`, data);
             const url = response.data.url;
             let val = type === "image" ? "thumbnail" : "videoLink";
             setVideoInputField({
@@ -75,7 +75,12 @@ function VideoUpload() {
     }
 
     async function handleSubmitFunction() {
-        await axios.post("http://localhost:4000/api/video", videoInputField, { withCredentials: true }).then((response) => {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/video`, videoInputField, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((response) => {
             console.log(response);
             toast.success(response.data.message);
             navigate("/");

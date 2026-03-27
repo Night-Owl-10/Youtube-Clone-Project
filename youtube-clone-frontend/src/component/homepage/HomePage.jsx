@@ -11,7 +11,7 @@ function HomePage() {
     const auth = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get("http://localhost:4000/api/allVideo").then(res => {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/allVideo`).then(res => {
             console.log(res.data.videos)
             setContent(res.data.videos);
         }).catch(err => {

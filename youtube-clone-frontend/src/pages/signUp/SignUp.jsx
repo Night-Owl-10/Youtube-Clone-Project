@@ -38,7 +38,7 @@ function SignUp() {
         data.append("upload_preset", "youtube-clone");
         try {
             //cloudName = "dru7e6cnq"
-            const response = await axios.post("https://api.cloudinary.com/v1_1/dru7e6cnq/image/upload", data);
+            const response = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, data);
             const imageUrl = response.data.url;
             setUlpoadedImageURL(imageUrl);
             setSignUpField({
@@ -54,7 +54,7 @@ function SignUp() {
 
     async function handleSignUp() {
         setLoader(true);
-        axios.post("http://localhost:4000/auth/signUp", signUpField).then((response) => {
+        axios.post(`${import.meta.env.VITE_API_URL}/auth/signUp`, signUpField).then((response) => {
             toast.success(response.data.message);
             setLoader(false);
             navigate("/");

@@ -50,7 +50,12 @@ function Header({ hideSidebar, sidebar }) {
 
     async function handleSignOut() {
         try {
-            const res = await axios.post("http://localhost:4000/auth/signOut", {}, { withCredentials: true });
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signOut`, {}, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             console.log("Logout successful");
         } catch (err) {
@@ -76,7 +81,7 @@ function Header({ hideSidebar, sidebar }) {
 
         setIsSearching(true);
         try {
-            const response = await axios.get(`http://localhost:4000/api/search?query=${encodeURIComponent(searchQuery.trim())}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/search?query=${encodeURIComponent(searchQuery.trim())}`);
             setSearchResults(response.data.videos || []);
             setShowSearchResults(true);
         } catch (error) {
@@ -117,7 +122,12 @@ function Header({ hideSidebar, sidebar }) {
 
     async function handleDeleteAccount() {
         const userId = localStorage.getItem("userId");
-        const res = await axios.delete(`http://localhost:4000/auth/deleteUser/${userId}`, { withCredentials: true });
+        const res = await axios.delete(`${import.meta.env.VITE_API_URL}/auth/deleteUser/${userId}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
         toast.success(res.data.message);
         signOut();
         setSignInChannel(false);

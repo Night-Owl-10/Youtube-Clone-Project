@@ -24,7 +24,7 @@ function CreateChannel({ handleCancelChannelPage }) {
         data.append("upload_preset", "youtube-clone");
         try {
             //cloudName = "dru7e6cnq"
-            const response = await axios.post("https://api.cloudinary.com/v1_1/dru7e6cnq/image/upload", data);
+            const response = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, data);
             const imageUrl = response.data.url;
             setCreateChannelField({
                 ...createChannelField, "channelBanner": imageUrl
@@ -56,7 +56,7 @@ function CreateChannel({ handleCancelChannelPage }) {
             }
 
             const response = await axios.post(
-                "http://localhost:4000/api/channel",
+                `${import.meta.env.VITE_API_URL}/api/channel`,
                 createChannelField,
                 {
                     headers: {

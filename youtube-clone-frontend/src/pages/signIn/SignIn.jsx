@@ -28,7 +28,7 @@ function SignIn() {
     async function handleSignIn() {
         try {
             console.log("Attempting to sign in with:", signInField);
-            const response = await axios.post("http://localhost:4000/auth/signIn", signInField, { withCredentials: true });
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signIn`, signInField, { withCredentials: true });
             console.log("Sign in response:", response.data);
 
             localStorage.setItem("token", response.data.token);

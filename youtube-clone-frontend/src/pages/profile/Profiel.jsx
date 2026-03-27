@@ -24,7 +24,7 @@ function Profile() {
     async function fetchProfileData() {
         try {
 
-            const channelRes = await axios.get(`http://localhost:4000/api/channel/user/${id}`);
+            const channelRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/channel/user/${id}`);
             setChannel(channelRes.data.channel);
             console.log("channel", channelRes.data.channel);
         } catch (err) {
@@ -32,14 +32,14 @@ function Profile() {
         }
         try {
 
-            const userRes = await axios.get(`http://localhost:4000/auth/user/${id}`);
+            const userRes = await axios.get(`${import.meta.env.VITE_API_URL}/auth/user/${id}`);
             setUser(userRes.data.user);
         } catch (err) {
             setUser(null);
         }
         try {
 
-            const videoRes = await axios.get(`http://localhost:4000/api/${id}/channel`);
+            const videoRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/${id}/channel`);
             setContent(videoRes.data.video || []);
         } catch (err) {
             setContent([]);
@@ -56,7 +56,12 @@ function Profile() {
     const handleSubscribe = async () => {
         try {
             if (!channel?._id) return;
-            const res = await axios.put(`http://localhost:4000/api/subscribe/${channel._id}`, {}, { withCredentials: true });
+            const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/subscribe/${channel._id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             fetchProfileData();
         } catch (err) {
@@ -66,7 +71,12 @@ function Profile() {
 
     const handleDeleteVideo = async (videoId) => {
         try {
-            const res = await axios.delete(`http://localhost:4000/api/deleteVideo/${videoId}`, { withCredentials: true });
+            const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/deleteVideo/${videoId}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             fetchProfileData();
         } catch (err) {
@@ -76,7 +86,12 @@ function Profile() {
 
     const handleDeleteChannel = async (channelId) => {
         try {
-            const res = await axios.delete(`http://localhost:4000/api/deleteChannel/${channelId}`, { withCredentials: true });
+            const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/deleteChannel/${channelId}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             fetchProfileData();
             navigate("/");

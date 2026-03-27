@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
 
         try {
             console.log("Fetching channel for user:", userId);
-            const response = await axios.get(`http://localhost:4000/api/channel/user/${userId}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/channel/user/${userId}`);
             console.log("Channel response:", response.data);
             setChannel(response.data.channel);
         } catch (error) {

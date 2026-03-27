@@ -26,7 +26,7 @@ function Video() {
     console.log(id);
 
     async function fetchVideoById() {
-        await axios.get(`http://localhost:4000/api/getVideoById/${id}`).then((response) => {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/getVideoById/${id}`).then((response) => {
             console.log(response.data.video);
             setData(response.data.video);
             setVideoUrl(response?.data?.video?.videoLink);
@@ -41,7 +41,7 @@ function Video() {
         if (hasTrackedView.current) return;
         hasTrackedView.current = true;
         try {
-            await axios.put(`http://localhost:4000/api/view/${id}`);
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/view/${id}`);
         } catch (err) {
             console.log("Error updating views", err);
         }
@@ -49,7 +49,12 @@ function Video() {
 
     const handleLike = async () => {
         try {
-            const res = await axios.put(`http://localhost:4000/api/like/${id}`, {}, { withCredentials: true });
+            const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/like/${id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             setRefetch(prev => !prev);
         } catch (err) {
@@ -59,7 +64,12 @@ function Video() {
 
     const handleDislike = async () => {
         try {
-            const res = await axios.put(`http://localhost:4000/api/dislike/${id}`, {}, { withCredentials: true });
+            const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/dislike/${id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             setRefetch(prev => !prev);
         } catch (err) {
@@ -70,7 +80,12 @@ function Video() {
     const handleSubscribe = async () => {
         try {
             if (!data?.channel?._id) return;
-            const res = await axios.put(`http://localhost:4000/api/subscribe/${data.channel._id}`, {}, { withCredentials: true });
+            const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/subscribe/${data.channel._id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             toast.success(res.data.message);
             setRefetch(prev => !prev);
         } catch (err) {
@@ -83,7 +98,7 @@ function Video() {
     }, [id]);
 
     async function getCommentByVideoId() {
-        await axios.get(`http://localhost:4000/commentApi/comment/${id}`).then((response) => {
+        await axios.get(`${import.meta.env.VITE_API_URL}/commentApi/comment/${id}`).then((response) => {
             console.log("response", response.data.comments);
             setComments(response.data.comments);
         }).catch(err => {
@@ -101,7 +116,12 @@ function Video() {
             "message": videoComment,
             "video": id
         }
-        await axios.post("http://localhost:4000/commentApi/comment", body, { withCredentials: true }).then((response) => {
+        await axios.post(`${import.meta.env.VITE_API_URL}/commentApi/comment`, body, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((response) => {
             console.log(response)
             setVideoComment("");
             setRefetch(prev => !prev);
@@ -115,7 +135,12 @@ function Video() {
     }
 
     async function handleDeleteComment(commentId) {
-        await axios.delete(`http://localhost:4000/commentApi/comment/${commentId}`, { withCredentials: true }).then((response) => {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/commentApi/comment/${commentId}`, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((response) => {
             console.log(response);
             setRefetch(prev => !prev);
             setOptionsCommentId("");
@@ -136,7 +161,12 @@ function Video() {
             "message": commentMessage,
             "commentId": commentId
         }
-        await axios.put("http://localhost:4000/commentApi/comment", body, { withCredentials: true }).then((response) => {
+        await axios.put(`${import.meta.env.VITE_API_URL}/commentApi/comment`, body, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((response) => {
             console.log(response);
             setRefetch(prev => !prev);
             setOptionsCommentId("");
