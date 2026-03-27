@@ -16,7 +16,7 @@ function Profile() {
     const [user, setUser] = useState(null);
     const [channel, setChannel] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { user: currentLoggedUser, channel: currentLoggedChannel } = useContext(AuthContext);
+    const { user: currentLoggedUser, channel: currentLoggedChannel, refreshAuthState } = useContext(AuthContext);
     const [showOptions, setShowOptions] = useState("");
 
     const navigate = useNavigate();
@@ -94,6 +94,7 @@ function Profile() {
             });
             toast.success(res.data.message);
             fetchProfileData();
+            await refreshAuthState();
             navigate("/");
         } catch (err) {
             toast.error(err.response?.data?.error || "Error deleting channel");
