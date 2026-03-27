@@ -44,8 +44,8 @@ exports.signIn = async (req, res) => {
 
         if (user && userEmail && await bcrypt.compare(password, user.password)) {
 
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: 300 });
-            res.cookie("token", token, { ...cookieOptions, maxAge: 300 * 1000 });
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: 3600 });
+            res.cookie("token", token, { ...cookieOptions, maxAge: 3600 * 1000 });
 
             res.json({ message: "Signed In successfully", success: "true", token, user });
         } else {

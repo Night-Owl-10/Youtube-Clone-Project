@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 4000;
+const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
@@ -26,6 +26,6 @@ app.use("/api", VideoRoutes);
 app.use("/api", ChannelRoutes);
 app.use("/commentApi", CommentRoutes);
 
-app.listen(port, () => {
-    console.log("Server is running on port 4000")
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
 })
