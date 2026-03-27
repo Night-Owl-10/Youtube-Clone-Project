@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/youtube-clone-frontend/index.html"
+            "destination": "/index.html"
         }
     ]
 }
