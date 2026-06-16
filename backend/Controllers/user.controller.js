@@ -4,11 +4,15 @@ const Video = require("../Models/video.model");
 const Comment = require("../Models/comment.model");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
+const resend = require("../Config/resend");
 
 const cookieOptions = {
     httpOnly: true,
-    secure: false,
-    sameSite: "Lax"
+    secure: process.env.NODE_ENV === "production",
+    sameSite:
+        process.env.NODE_ENV === "production"
+            ? "None"
+            : "Lax"
 }
 
 exports.signUp = async (req, res) => {
@@ -26,10 +30,32 @@ exports.signUp = async (req, res) => {
         } else if (isEmailExist) {
             res.status(400).json({ error: "Account with this E-Mail Id already exist. Please try with some other E-Mail Id." });
         } else {
+            const otp = Math.floor(
+                100000 + Math.random() * 900000
+            ).toString();
+
+            const otpExpiry = new Date(
+                Date.now() + 10 * 60 * 1000
+            );
+
             let updatedPassword = await bcrypt.hash(password, 10);
-            const user = new User({ userName, email, password: updatedPassword, avatar });
+            const user = new User({ userName, email, password: updatedPassword, avatar, emailOtp: otp, emailOtpExpires: otpExpiry });
             await user.save();
-            res.status(201).json({ message: "User registered successfully", success: "yes", data: user });
+            await resend.emails.send({
+                from: "onboarding@resend.dev",
+                to: email,
+                subject: "Verify Your Account",
+                html: `
+                    <h2>Your Verification OTP</h2>
+                    <h1>${otp}</h1>
+                    <p>This OTP will expire in 10 minutes.</p>
+                `
+            });
+            res.status(201).json({
+                message: "OTP sent successfully. Please verify your email.",
+                success: true,
+                email: user.email
+            });
         }
     } catch (error) {
         res.status(500).json({ error: "Server Error" });
@@ -38,11 +64,28 @@ exports.signUp = async (req, res) => {
 
 exports.signIn = async (req, res) => {
     try {
-        const { userName, email, password } = req.body;
-        const user = await User.findOne({ userName });
-        const userEmail = await User.findOne({ email });
 
-        if (user && userEmail && await bcrypt.compare(password, user.password)) {
+        const { userName, email, password } = req.body;
+        const user = await User.findOne({
+            $or: [
+                { email },
+                { userName }
+            ]
+        });
+
+        if (user?.googleId) {
+            return res.status(400).json({
+                error: "Please sign in with Google"
+            });
+        }
+
+        if (user && await bcrypt.compare(password, user.password)) {
+
+            if (!user.isVerified) {
+                return res.status(400).json({
+                    error: "Please verify your email first"
+                });
+            }
 
             const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: 3600 });
             res.cookie("token", token, { ...cookieOptions, maxAge: 3600 * 1000 });
@@ -81,5 +124,222 @@ exports.deleteUser = async (req, res) => {
         res.json({ message: 'User deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
+    }
+};
+
+exports.sendTestEmail = async (req, res) => {
+    try {
+
+        const data = await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: "pranavramteke40@gmail.com",
+            subject: "Resend Test",
+            html: "<h1>Resend is Working 🚀</h1>"
+        });
+
+        res.status(200).json(data);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+};
+
+exports.verifyOtp = async (req, res) => {
+    const { email, otp } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        return res.status(404).json({
+            error: "User not found"
+        });
+    }
+
+    if (user.isVerified) {
+        return res.status(400).json({
+            error: "Email already verified"
+        });
+    }
+
+    if (!user.emailOtp || !user.emailOtpExpires) {
+        return res.status(400).json({
+            error: "No active OTP found"
+        });
+    }
+
+    if (user.emailOtpExpires < new Date()) {
+        return res.status(400).json({
+            error: "OTP expired"
+        });
+    }
+
+    if (user.emailOtp !== otp) {
+        return res.status(400).json({
+            error: "Invalid OTP"
+        });
+    }
+
+    user.isVerified = true;
+    user.emailOtp = null;
+    user.emailOtpExpires = null;
+
+    await user.save();
+
+    res.json({
+        message: "Email verified successfully",
+        success: true
+    });
+}
+
+exports.forgotPassword = async (req, res) => {
+    try {
+
+        const { email } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                error: "User not found"
+            });
+        }
+
+        if (!user.isVerified) {
+            return res.status(400).json({
+                error: "Please verify your email first"
+            });
+        }
+
+        const otp = Math.floor(
+            100000 + Math.random() * 900000
+        ).toString();
+
+        user.resetOtp = otp;
+        user.resetOtpExpires = Date.now() + 10 * 60 * 1000;
+
+        await user.save();
+
+        await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: email,
+            subject: "Password Reset OTP",
+            html: `
+                <h2>Password Reset Request</h2>
+                <p>Your OTP is:</p>
+                <h1>${otp}</h1>
+                <p>This OTP expires in 10 minutes.</p>
+            `
+        });
+
+        return res.status(200).json({
+            message: "Password reset OTP sent successfully",
+            email: user.email
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        return res.status(500).json({
+            error: "Internal server error"
+        });
+    }
+};
+
+
+exports.verifyResetOtp = async (req, res) => {
+    try {
+        const { email, otp, newPassword } = req.body;
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                error: "User not found"
+            });
+        }
+
+        if (!user.resetOtp || !user.resetOtpExpires) {
+            return res.status(400).json({
+                error: "No active OTP found"
+            });
+        }
+
+        if (user.resetOtpExpires < new Date()) {
+            return res.status(400).json({
+                error: "OTP expired"
+            });
+        }
+
+        if (user.resetOtp !== otp) {
+            return res.status(400).json({
+                error: "Invalid OTP"
+            });
+        }
+
+        user.resetOtp = null;
+        user.resetOtpExpires = null;
+        user.password = await bcrypt.hash(newPassword, 10);
+
+        await user.save();
+
+        return res.status(200).json({
+            message: "Password reset successfully"
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: "Internal server error"
+        });
+    }
+}
+
+exports.googleCallback = async (req, res) => {
+
+    try {
+
+        const token = jwt.sign(
+            {
+                userId: req.user._id
+            },
+            process.env.JWT_SECRET_KEY,
+            {
+                expiresIn: 3600
+            }
+        );
+
+        res.cookie(
+            "token",
+            token,
+            {
+                ...cookieOptions,
+                maxAge: 3600 * 1000
+            }
+        );
+
+        res.redirect(
+            `${process.env.CLIENT_URL}/oauth-success?token=${token}`
+        );
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            error: "Google login failed"
+        });
+    }
+};
+
+exports.getMe = async (req, res) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        return res.status(200).json({ user });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Internal server error" });
     }
 };

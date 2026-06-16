@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import AuthContext from "../../utils/authContext";
+import GoogleIcon from '@mui/icons-material/Google';
 
 function SignUp() {
     const [ulpoadedImageURL, setUlpoadedImageURL] = useState("https://isobarscience.com/wp-content/uploads/2020/09/default-profile-picture1.jpg");
@@ -57,7 +58,8 @@ function SignUp() {
         axios.post(`${import.meta.env.VITE_API_URL}/auth/signUp`, signUpField).then((response) => {
             toast.success(response.data.message);
             setLoader(false);
-            navigate("/");
+            localStorage.setItem("verificationEmail", signUpField.email);
+            navigate("/verify-otp");
         }).catch(err => {
             setLoader(false);
             const message = err.response?.data?.error || err.message || "Sign up failed. Please try again.";
@@ -85,6 +87,23 @@ function SignUp() {
                             <img className="signUpimageDefault" src={ulpoadedImageURL} />
                         </div>
                     </div>
+
+                    <div style={{ color: "white", fontSize: "12px", textAlign: "center", marginTop: "10px" }}>
+                        <span style={{ borderTop: "1px solid #444", width: "70px" }}></span>
+                        <span>Or Sign in with Google</span>
+                        <span style={{ borderTop: "1px solid #444", width: "70px" }}></span>
+                    </div>
+
+                    <button
+                        onClick={() => {
+                            window.location.href =
+                                "http://localhost:4000/auth/google";
+                        }}
+                        className="google-btn"
+                    >
+                        <GoogleIcon />
+                        Sign Up with Google
+                    </button>
 
                     {loader && <Box sx={{ display: 'flex', width: "100%", justifyContent: "center", padding: "10px" }}>
                         <CircularProgress />

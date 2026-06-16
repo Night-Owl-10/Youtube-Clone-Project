@@ -13,12 +13,25 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        default: null,
+    },
+    googleId: {
+        type: String,
+        default: null
     },
     avatar: {
         type: String,
         required: true,
-    }
-}, {timestamps: true})
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+
+    emailOtp: String,
+    emailOtpExpires: Date,
+    resetOtp: String,
+    resetOtpExpires: Date
+}, { timestamps: true })
 
 module.exports = mongoose.model("user", userSchema);

@@ -3,7 +3,12 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`
+});
+const passport = require("passport");
+require("./Config/passport");
+
 
 
 const allowedOrigins = [
@@ -27,6 +32,7 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(passport.initialize());
 require("./Connection/connection")
 
 const AuthRoutes = require("./Routes/user.routes");

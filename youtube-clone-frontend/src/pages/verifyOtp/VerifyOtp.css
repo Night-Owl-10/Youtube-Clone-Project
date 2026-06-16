@@ -1,0 +1,84 @@
+.verifyOtpPage {
+    padding-top: 56px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.verifyOtpPageBox {
+    width: 35%;
+    margin-top: 50px;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0.5px 0.5px 8px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.verifyOtpPage-title {
+    font-size: 30px;
+    font-weight: 550;
+}
+
+.verifyOtpForm {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.verifyOtpInput {
+    width: 60%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    background-color: #222222;
+    color: white;
+}
+
+.verifyOtpBtns {
+    margin-top: 30px;
+}
+
+.verifyOtpBtn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.verifyOtpBtn:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 768px) {
+
+    .verifyOtpPageBox {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .verifyOtpInput {
+        width: 100%;
+    }
+
+    .verifyOtpPage-title {
+        font-size: 24px;
+    }
+
+    .verifyOtpBtn {
+        width: 100%;
+    }
+}

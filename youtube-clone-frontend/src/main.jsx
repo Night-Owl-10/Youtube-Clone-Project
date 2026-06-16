@@ -10,6 +10,11 @@ import Profile from './pages/profile/Profiel.jsx';
 import VideoUpload from './pages/videoUpload/VideoUpload.jsx';
 import SignUp from './pages/signUp/SignUp.jsx';
 import PageNotFound from './pages/pageNotFound/PageNotFound.jsx';
+import VerifyOtp from "./pages/verifyOtp/VerifyOtp.jsx";
+import PasswordReset from "./pages/passwordReset/PasswordReset.jsx";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword.jsx";
+import OAuthSuccess from "./pages/oAuthSuccess/OAuthSuccess.jsx";
+
 
 const appRouter = createBrowserRouter([
   {
@@ -39,6 +44,22 @@ const appRouter = createBrowserRouter([
       {
         path: "signUp",
         element: <SignUp />
+      },
+      {
+        path: "verify-otp",
+        element: <VerifyOtp />
+      },
+      {
+        path: "password-reset",
+        element: <PasswordReset />
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />
+      },
+      {
+        path: "/oauth-success",
+        element: <OAuthSuccess />
       }
     ],
     errorElement: <PageNotFound />

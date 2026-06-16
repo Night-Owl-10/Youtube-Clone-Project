@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import AuthContext from "../../utils/authContext";
+import GoogleIcon from '@mui/icons-material/Google';
 
 function SignIn() {
     const [signInField, setSignInField] = useState({ "userName": "", "email": "", "password": "" });
@@ -71,6 +72,26 @@ function SignIn() {
                         <input type="password" value={signInField.password} onChange={(e) => handleOnchangeInput(e, "password")} placeholder="Password" className="signInUserName" />
                     </div>
 
+                    <Link to="/forgot-password" style={{ textAlign: "right", color: "#3ea6ff" }}>
+                        Forgot Password?
+                    </Link>
+
+                    <div style={{ color: "white", fontSize: "12px", textAlign: "center", marginTop: "10px" }}>
+                        <span style={{ borderTop: "1px solid #444", width: "70px" }}></span>
+                        <span>Or Sign in with Google</span>
+                        <span style={{ borderTop: "1px solid #444", width: "70px" }}></span>
+                    </div>
+
+                    <button
+                        onClick={() => {
+                            window.location.href =
+                                "http://localhost:4000/auth/google";
+                        }}
+                        className="google-btn"
+                    >
+                        <GoogleIcon />
+                        Sign in with Google
+                    </button>
                 </div>
 
                 <div className="signInBtns">
