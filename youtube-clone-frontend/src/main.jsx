@@ -15,7 +15,7 @@ import PasswordReset from "./pages/passwordReset/PasswordReset.jsx";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword.jsx";
 import OAuthSuccess from "./pages/oAuthSuccess/OAuthSuccess.jsx";
 
-
+//main.jsx 
 const appRouter = createBrowserRouter([
   {
     path: "/",
