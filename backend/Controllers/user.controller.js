@@ -73,7 +73,7 @@ exports.signIn = async (req, res) => {
             ]
         });
 
-        if (user?.googleId) {
+        if (user?.googleId && !user?.password) {
             return res.status(400).json({
                 error: "Please sign in with Google"
             });
@@ -191,6 +191,54 @@ exports.verifyOtp = async (req, res) => {
         success: true
     });
 }
+
+exports.resendVerificationOtp = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ error: "Email is required" });
+        }
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ error: "No account found with this email" });
+        }
+
+        if (user.isVerified) {
+            return res.status(400).json({ error: "This account is already verified" });
+        }
+
+        // Generate a fresh OTP and reset its expiry
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+
+        user.emailOtp = otp;
+        user.emailOtpExpires = otpExpiry;
+        await user.save();
+
+        await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: email,
+            subject: "Verify Your Account",
+            html: `
+                <h2>Your Verification OTP</h2>
+                <h1>${otp}</h1>
+                <p>This OTP will expire in 10 minutes.</p>
+            `
+        });
+
+        return res.status(200).json({
+            message: "Verification OTP resent successfully. Please check your email.",
+            success: true
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Server Error" });
+    }
+};
 
 exports.forgotPassword = async (req, res) => {
     try {

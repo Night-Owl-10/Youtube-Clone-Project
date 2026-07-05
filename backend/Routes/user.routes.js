@@ -12,6 +12,7 @@ router.delete("/deleteUser/:userId", auth, UserController.deleteUser);
 
 router.get("/test-email", UserController.sendTestEmail);
 router.post("/verify-otp", UserController.verifyOtp);
+router.post("/resend-verification-otp", UserController.resendVerificationOtp);
 router.post("/forgot-password", UserController.forgotPassword)
 router.post("/verify-reset-otp", UserController.verifyResetOtp)
 

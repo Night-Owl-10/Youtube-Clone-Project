@@ -12,11 +12,11 @@
 }
 
 .signUpPageBox {
-    width: 40%;
-    border-radius: 15px;
-    margin-top: 30px;
+    width: 35%;
+    border-radius: 12px;
+    margin-top: 20px;
     box-shadow: 0.5px 0.5px 8px white;
-    padding: 15px 25px;
+    padding: 12px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,26 +27,26 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 550;
     font-optical-sizing: auto;
     font-style: normal;
-    gap: 20px;
+    gap: 12px;
 }
 
 .signUpInputs {
-    gap: 20px;
+    gap: 12px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 16px;
 }
 
 .signUpInput {
     width: 60%;
-    height: 45px;
+    height: 38px;
     color: white;
     padding: 0 10px;
     border: none;
@@ -56,12 +56,12 @@
 
 .signUpimageUpload {
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .signUpimageUploadDiv {
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
 }
 
 .signUpimageDefault {
@@ -74,13 +74,13 @@
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 16px;
     justify-content: center;
 }
 
 .signUpBtn {
-    padding: 10px;
-    font-size: 18px;
+    padding: 7px 14px;
+    font-size: 15px;
     font-weight: 500;
     border-radius: 50px;
     border: 1px solid;
@@ -95,7 +95,7 @@
 }
 
 .uploadAvatar {
-    margin-top: 10px;
+    margin-top: 6px;
     width: 60%;
     display: flex;
     align-items: start;
@@ -105,14 +105,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 10px 20px;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 16px;
     border: none;
     border-radius: 5px;
     background-color: #4285F4;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -125,51 +125,51 @@
 
     .signUpPageBox {
         width: 90%;
-        margin-top: 15px;
-        padding: 12px 12px;
+        margin-top: 10px;
+        padding: 10px 10px;
         border-radius: 10px;
         box-sizing: border-box;
         box-shadow: 0.5px 0.5px 8px white;
     }
 
     .signUpPage-title {
-        font-size: 20px;
-        gap: 12px;
+        font-size: 18px;
+        gap: 8px;
     }
 
     .signUpInputs {
-        gap: 14px;
-        margin-top: 18px;
+        gap: 10px;
+        margin-top: 12px;
         width: 100%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 38px;
-        font-size: 13px;
+        height: 34px;
+        font-size: 12px;
         box-sizing: border-box;
     }
 
     .signUpimageUpload {
         flex-direction: column;
         align-items: center;
-        gap: 15px;
-        margin-top: 12px;
+        gap: 10px;
+        margin-top: 8px;
     }
 
     .signUpimageUploadDiv {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 
     .signUpBtns {
-        gap: 15px;
-        margin-top: 15px;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .signUpBtn {
-        padding: 8px 16px;
-        font-size: 14px;
+        padding: 6px 12px;
+        font-size: 13px;
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -190,47 +190,47 @@
 
     .signUpPageBox {
         width: 78%;
-        margin-top: 20px;
-        padding: 15px 18px;
-        border-radius: 12px;
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 10px;
     }
 
     .signUpPage-title {
-        font-size: 22px;
-        gap: 14px;
+        font-size: 19px;
+        gap: 10px;
     }
 
     .signUpInputs {
-        gap: 16px;
-        margin-top: 20px;
+        gap: 10px;
+        margin-top: 14px;
         width: 100%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 40px;
-        font-size: 14px;
+        height: 35px;
+        font-size: 13px;
     }
 
     .signUpimageUpload {
         flex-direction: column;
         align-items: center;
-        gap: 18px;
+        gap: 12px;
     }
 
     .signUpimageUploadDiv {
-        width: 70px;
-        height: 70px;
+        width: 56px;
+        height: 56px;
     }
 
     .signUpBtns {
-        gap: 18px;
-        margin-top: 18px;
+        gap: 12px;
+        margin-top: 12px;
     }
 
     .signUpBtn {
-        padding: 9px;
-        font-size: 15px;
+        padding: 7px;
+        font-size: 13px;
     }
 
     .uploadAvatar {
@@ -245,45 +245,45 @@
     }
 
     .signUpPageBox {
-        width: 70%;
-        margin-top: 25px;
-        padding: 18px 20px;
+        width: 65%;
+        margin-top: 16px;
+        padding: 14px 16px;
     }
 
     .signUpPage-title {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .signUpInputs {
-        gap: 18px;
-        margin-top: 22px;
+        gap: 12px;
+        margin-top: 14px;
         width: 95%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 42px;
-        font-size: 15px;
+        height: 36px;
+        font-size: 13px;
     }
 
     .signUpimageUpload {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 14px;
     }
 
     .signUpimageUploadDiv {
-        width: 80px;
-        height: 80px;
+        width: 64px;
+        height: 64px;
     }
 
     .signUpBtns {
-        gap: 20px;
+        gap: 14px;
     }
 
     .signUpBtn {
-        padding: 9px;
-        font-size: 16px;
+        padding: 7px;
+        font-size: 14px;
     }
 
     .uploadAvatar {
@@ -298,44 +298,44 @@
     }
 
     .signUpPageBox {
-        width: 60%;
-        margin-top: 28px;
-        padding: 20px 22px;
+        width: 52%;
+        margin-top: 18px;
+        padding: 14px 16px;
     }
 
     .signUpPage-title {
-        font-size: 26px;
+        font-size: 22px;
     }
 
     .signUpInputs {
-        gap: 20px;
-        margin-top: 24px;
+        gap: 12px;
+        margin-top: 14px;
         width: 92%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 44px;
+        height: 37px;
     }
 
     .signUpimageUpload {
         flex-direction: column;
         align-items: center;
-        gap: 22px;
+        gap: 14px;
     }
 
     .signUpimageUploadDiv {
-        width: 90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
     }
 
     .signUpBtns {
-        gap: 22px;
+        gap: 14px;
     }
 
     .signUpBtn {
-        padding: 10px;
-        font-size: 17px;
+        padding: 7px;
+        font-size: 15px;
     }
 
     .uploadAvatar {
@@ -350,44 +350,44 @@
     }
 
     .signUpPageBox {
-        width: 50%;
-        margin-top: 30px;
-        padding: 22px 25px;
+        width: 42%;
+        margin-top: 20px;
+        padding: 16px 18px;
     }
 
     .signUpPage-title {
-        font-size: 28px;
+        font-size: 23px;
     }
 
     .signUpInputs {
-        gap: 22px;
-        margin-top: 26px;
+        gap: 12px;
+        margin-top: 14px;
         width: 90%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 45px;
+        height: 38px;
     }
 
     .signUpimageUpload {
         flex-direction: column;
         align-items: center;
-        gap: 24px;
+        gap: 16px;
     }
 
     .signUpimageUploadDiv {
-        width: 100px;
-        height: 100px;
+        width: 72px;
+        height: 72px;
     }
 
     .signUpBtns {
-        gap: 24px;
+        gap: 16px;
     }
 
     .signUpBtn {
-        padding: 10px;
-        font-size: 18px;
+        padding: 7px;
+        font-size: 15px;
     }
 
     .uploadAvatar {
@@ -402,44 +402,44 @@
     }
 
     .signUpPageBox {
-        width: 42%;
-        margin-top: 32px;
-        padding: 25px 28px;
+        width: 35%;
+        margin-top: 22px;
+        padding: 18px 22px;
     }
 
     .signUpPage-title {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .signUpInputs {
-        gap: 24px;
-        margin-top: 28px;
+        gap: 14px;
+        margin-top: 16px;
         width: 90%;
     }
 
     .signUpInput {
         width: 100%;
-        height: 46px;
+        height: 38px;
     }
 
     .signUpimageUpload {
         flex-direction: row;
         align-items: center;
-        gap: 28px;
+        gap: 20px;
     }
 
     .signUpimageUploadDiv {
-        width: 100px;
-        height: 100px;
+        width: 72px;
+        height: 72px;
     }
 
     .signUpBtns {
-        gap: 28px;
+        gap: 18px;
     }
 
     .signUpBtn {
-        padding: 10px;
-        font-size: 18px;
+        padding: 7px;
+        font-size: 15px;
     }
 
     .uploadAvatar {

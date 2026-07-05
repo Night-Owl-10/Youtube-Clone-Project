@@ -110,6 +110,7 @@ function SignUp() {
 
                     <div className="signUpBtns">
                         <div className="signUpBtn" onClick={handleSignUp}>SignUp</div>
+                        <Link to="/signIn" style={{ textDecoration: 'none', color: 'inherit' }}><div className="signUpBtn">Sign In</div></Link>
                         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}><div className="signUpBtn">Cancel</div></Link>
                     </div>
                 </div>

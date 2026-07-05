@@ -47,7 +47,19 @@ function SignIn() {
             toast.success(response.data.message);
         } catch (err) {
             console.error("Sign in error:", err);
-            toast.error(err.response?.data?.error || "Sign in failed");
+            const errorMessage = err.response?.data?.error || "Sign in failed";
+
+            if (errorMessage === "Please verify your email first") {
+                const attemptedEmail = signInField.email;
+                if (attemptedEmail) {
+                    localStorage.setItem("verificationEmail", attemptedEmail);
+                }
+                toast.info("Your email is not verified. Redirecting to verification…");
+                navigate("/verify-otp");
+                return;
+            }
+
+            toast.error(errorMessage);
         }
     }
 
