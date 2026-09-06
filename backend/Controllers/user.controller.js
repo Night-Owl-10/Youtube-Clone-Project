@@ -4,7 +4,7 @@ const Video = require("../Models/video.model");
 const Comment = require("../Models/comment.model");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
-const resend = require("../Config/resend");
+const transporter = require("../Config/nodemailer");
 
 const cookieOptions = {
     httpOnly: true,
@@ -41,8 +41,8 @@ exports.signUp = async (req, res) => {
             let updatedPassword = await bcrypt.hash(password, 10);
             const user = new User({ userName, email, password: updatedPassword, avatar, emailOtp: otp, emailOtpExpires: otpExpiry });
             await user.save();
-            await resend.emails.send({
-                from: "onboarding@resend.dev",
+            await transporter.sendMail({
+                from: `"YouTube Clone" <${process.env.GMAIL_USER}>`,
                 to: email,
                 subject: "Verify Your Account",
                 html: `
@@ -130,11 +130,11 @@ exports.deleteUser = async (req, res) => {
 exports.sendTestEmail = async (req, res) => {
     try {
 
-        const data = await resend.emails.send({
-            from: "onboarding@resend.dev",
+        const data = await transporter.sendMail({
+            from: `"YouTube Clone" <${process.env.GMAIL_USER}>`,
             to: "pranavramteke40@gmail.com",
-            subject: "Resend Test",
-            html: "<h1>Resend is Working 🚀</h1>"
+            subject: "NodeMailer Test",
+            html: "<h1>NodeMailer is Working 🚀</h1>"
         });
 
         res.status(200).json(data);
@@ -218,8 +218,8 @@ exports.resendVerificationOtp = async (req, res) => {
         user.emailOtpExpires = otpExpiry;
         await user.save();
 
-        await resend.emails.send({
-            from: "onboarding@resend.dev",
+        await transporter.sendMail({
+            from: `"YouTube Clone" <${process.env.GMAIL_USER}>`,
             to: email,
             subject: "Verify Your Account",
             html: `
@@ -268,8 +268,8 @@ exports.forgotPassword = async (req, res) => {
 
         await user.save();
 
-        await resend.emails.send({
-            from: "onboarding@resend.dev",
+        await transporter.sendMail({
+            from: `"YouTube Clone" <${process.env.GMAIL_USER}>`,
             to: email,
             subject: "Password Reset OTP",
             html: `
